@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal RT 04 / RW 12 Sukamantri</title>
+    <meta property="og:title" content="Portal RT 04 / RW 12 Sukamantri" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  <meta name="description" content="Portal Layanan Terpadu & Sistem Informasi Manajemen Warga RT 04 / RW 12 Perum Taman Buah Sukamantri. Layanan surat pengantar online, transparansi kas & iuran, aduan warga, demografi, dan panel pengurus."
+    <meta property="og:description" content="Portal Layanan Terpadu & Sistem Informasi Manajemen Warga RT 04 / RW 12 Perum Taman Buah Sukamantri. Layanan surat pengantar online, transparansi kas & iuran, aduan warga, demografi, dan panel pengurus." /> />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230d63c4'/><text x='50' y='62' font-size='40' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>RT</text></svg>" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0d63c4" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="RT 04 RW 12" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#beranda" class="brand">
+        <span class="brand-badge">RT<span>04</span></span>
+        <span class="brand-text">
+          <strong>RT 04 / RW 12</strong>
+          <small>Perum Taman Buah Sukamantri</small>
+        </span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#beranda">Beranda</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#lacak">Lacak Pengajuan</a>
+        <a href="#iuran">Iuran &amp; Kas</a>
+        <a href="#pengumuman">Pengumuman</a>
+        <a href="#profil">Profil RT</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/admin.html" class="btn btn-ghost btn-sm">Masuk Pengurus</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="beranda">
+    <div class="hero-spotlight" id="heroSpotlight" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Portal Resmi Warga · Layanan RT Terpadu</span>
+        <h1>Layanan RT 04 / RW 12 <br />kini <em>lebih dekat dari genggaman</em></h1>
+        <p class="hero-lead">
+          Surat pengantar, setoran iuran, aduan warga, hingga pengumuman lingkungan —
+          semua urusan RT dapat diurus <strong>online tanpa antre</strong>, kapan saja, dari rumah Anda.
+        </p>
+        <div class="hero-cta">
+          <a href="#layanan" class="btn btn-primary">Ajukan Layanan</a>
+          <a href="#lacak" class="btn btn-outline">Lacak Pengajuan</a>
+        </div>
+        <div class="hero-pills">
+          <span>✅ Tanpa antre</span>
+          <span>🕘 Online 24 jam</span>
+          <span>🔒 Data warga aman</span>
+          <span>🤝 Gratis untuk warga</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-head">
+          <span class="dot"></span> Pelayanan Aktif
+        </div>
+        <ul class="hero-card-list">
+          <li><span>🕐</span><div><strong>Jam Pelayanan</strong><small id="heroJam">—</small></div></li>
+          <li><span>📍</span><div><strong>Lokasi RT Office</strong><small>Pos RT 04, Perum Taman Buah Sukamantri</small></div></li>
+          <li><span>💬</span><div><strong>WhatsApp Pengurus</strong><small id="heroWa">—</small></div></li>
+        </ul>
+        <a id="heroWaLink" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-block">Chat Pengurus RT</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ===== Demografi ===== -->
+    <section class="section section-alt" id="demografi">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Kependudukan</span>
+          <h2>Demografi Warga RT 04 / RW 12</h2>
+          <p>Data kependudukan dihitung otomatis dari Data Warga &amp; Rumah yang dikelola pengurus — jumlah jiwa dan persentasenya.</p>
+        </div>
+        <div class="demo-grid">
+          <div class="card demo-card">
+            <h3>👥 Kelompok Usia</h3>
+            <div id="demoUsia" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>⚧ Jenis Kelamin &amp; Disabilitas</h3>
+            <div id="demoKelamin" class="demo-rows"><p class="muted">Memuat…</p></div>
+            <h4>Disabilitas</h4>
+            <div id="demoDisabilitas" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🏠 Status Rumah</h3>
+            <div id="demoRumah" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🎓 Pendidikan</h3>
+            <div id="demoPendidikan" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>💼 Pekerjaan</h3>
+            <div id="demoPekerjaan" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>💍 Perkawinan</h3>
+            <div id="demoPerkawinan" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🏡 Status Tinggal</h3>
+            <div id="demoTinggal" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>📍 Status Domisili</h3>
+            <div id="demoDomisili" class="demo-rows"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🕌 Agama</h3>
+            <div id="demoAgama" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🚗 Kepemilikan Kendaraan</h3>
+            <div id="demoKendaraan" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>⚡ Daya Listrik</h3>
+            <div id="demoListrik" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>💧 Sumber Air Bersih</h3>
+            <div id="demoAir" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🌐 Jaringan Internet</h3>
+            <div id="demoInternet" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🏪 Usaha / UMKM Warga</h3>
+            <div id="demoUsaha" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>📹 CCTV Rumah</h3>
+            <div id="demoCctv" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>🧮 Rekap Warga</h3>
+            <div id="demoRekap" class="demo-rows"></div>
+          </div>
+          <div class="card demo-card">
+            <h3>💸 Cashflow Kas RT</h3>
+            <div id="demoCashflow" class="demo-rows"></div>
+          </div>
+        </div>
+        <p class="muted center demo-catatan" id="demoCatatan"></p>
+      </div>
+    </section>
+
+    <!-- ===== Layanan Terpadu ===== -->
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Layanan RT Terpadu</span>
+          <h2>Empat layanan warga dalam satu pintu</h2>
+          <p>Pilih layanan, isi formulir, lalu pantau prosesnya. Gratis, tanpa biaya administrasi.</p>
+        </div>
+        <div class="cards-4">
+          <a class="service-card" href="#form-surat">
+            <div class="service-icon">📄</div>
+            <h3>Surat Pengantar RT</h3>
+            <p>Pengajuan surat pengantar untuk KTP, KK, KIA, SKTM, nikah, dan keperluan lainnya.</p>
+            <span class="service-link">Ajukan surat →</span>
+          </a>
+          <a class="service-card" href="#iuran">
+            <div class="service-icon">💰</div>
+            <h3>Iuran &amp; Kas RT</h3>
+            <p>Bayar iuran bulanan, laporkan setoran, dan pantau laporan kas yang transparan.</p>
+            <span class="service-link">Lihat iuran →</span>
+          </a>
+          <a class="service-card" href="#form-aduan">
+            <div class="service-icon">🛡️</div>
+            <h3>Aduan &amp; Laporan</h3>
+            <p>Laporkan gangguan keamanan, fasilitas rusak, atau persoalan kebersihan lingkungan.</p>
+            <span class="service-link">Kirim aduan →</span>
+          </a>
+          <a class="service-card" href="#pengumuman">
+            <div class="service-icon">📢</div>
+            <h3>Pengumuman &amp; Agenda</h3>
+            <p>Informasi resmi RT: jadwal ronda, kerja bakti, rapat warga, dan kegiatan sosial.</p>
+            <span class="service-link">Baca info →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Formulir Layanan ===== -->
+    <section class="section section-alt" id="form">
+      <div class="container narrow">
+        <div class="section-head">
+          <span class="section-eyebrow">Formulir Online</span>
+          <h2>Urusan RT tanpa antre</h2>
+          <p>Isi formulir berikut. Setelah dikirim, Anda akan menerima <strong>nomor pengajuan</strong> untuk melacak prosesnya.</p>
+        </div>
+
+        <div class="tabs" id="formTabs">
+          <button class="tab active" data-tab="surat" id="form-surat">📄 Surat Pengantar</button>
+          <button class="tab" data-tab="aduan" id="form-aduan">🛡️ Aduan Warga</button>
+          <button class="tab" data-tab="setoran">💰 Setoran Iuran</button>
+        </div>
+
+        <!-- Form Surat -->
+        <form class="card form" id="suratForm" data-tab-panel="surat">
+          <div class="form-grid">
+            <label>Nama Lengkap <input type="text" name="nama" required placeholder="Sesuai KTP" /></label>
+            <label>NIK (opsional) <input type="text" name="nik" inputmode="numeric" maxlength="16" placeholder="16 digit angka" /></label>
+            <label>Blok / No. Rumah <input type="text" name="blok" required placeholder="Contoh: Jambu 1 No. 12" /></label>
+            <label>No. WhatsApp <input type="tel" name="no_hp" required placeholder="08xx-xxxx-xxxx" /></label>
+            <label>Jenis Surat
+              <select name="jenis_surat" required>
+                <option value="">— Pilih jenis surat —</option>
+                <option>Surat Pengantar KTP</option>
+                <option>Surat Pengantar Kartu Keluarga (KK)</option>
+                <option>Surat Pengantar KIA</option>
+                <option>Surat Keterangan Tidak Mampu (SKTM)</option>
+                <option>Surat Keterangan Domisili</option>
+                <option>Surat Keterangan Usaha</option>
+                <option>Surat Pengantar Nikah</option>
+                <option>Surat Keterangan Kematian</option>
+                <option>Surat Keterangan Lainnya</option>
+              </select>
+            </label>
+            <label>Keperluan <input type="text" name="keperluan" required placeholder="Contoh: perpanjangan KTP di Disdukcapil" /></label>
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim Pengajuan Surat</button>
+        </form>
+
+        <!-- Form Aduan -->
+        <form class="card form hidden" id="aduanForm" data-tab-panel="aduan">
+          <div class="form-grid">
+            <label>Nama Lengkap <input type="text" name="nama" required placeholder="Nama Anda" /></label>
+            <label>Blok / No. Rumah <input type="text" name="blok" required placeholder="Contoh: Mangga 2 No. 8" /></label>
+            <label>No. WhatsApp <input type="tel" name="no_hp" required placeholder="08xx-xxxx-xxxx" /></label>
+            <label>Kategori Aduan
+              <select name="kategori" required>
+                <option value="">— Pilih kategori —</option>
+                <option>Keamanan</option>
+                <option>Kebersihan</option>
+                <option>Fasilitas</option>
+                <option>Sosial</option>
+                <option>Lainnya</option>
+              </select>
+            </label>
+            <label class="span-2">Lokasi Kejadian <input type="text" name="lokasi" placeholder="Contoh: lampu penerang jalan depan pos RT mati" /></label>
+            <label class="span-2">Kronologi / Isi Laporan <textarea name="isi" rows="4" required placeholder="Jelaskan kejadian secara jelas: apa, di mana, dan kapan..."></textarea></label>
+          </div>
+          <button type="submit" class="btn btn-primary">Kirim Aduan</button>
+        </form>
+
+        <!-- Form Setoran -->
+        <form class="card form hidden" id="setoranForm" data-tab-panel="setoran">
+          <div class="form-grid">
+            <label>Nama Lengkap <input type="text" name="nama" required placeholder="Nama Anda" /></label>
+            <label>Blok / No. Rumah <input type="text" name="blok" required placeholder="Contoh: Sawo 3 No. 21" /></label>
+            <label>No. WhatsApp <input type="tel" name="no_hp" placeholder="08xx-xxxx-xxxx" /></label>
+            <label>Nominal (Rp) <input type="number" name="nominal" min="1000" step="1000" required placeholder="150000" /></label>
+            <label>Periode <input type="text" name="periode" placeholder="Contoh: Oktober 2026" /></label>
+            <label>Metode Pembayaran
+              <select name="metode" required>
+                <option value="">— Pilih metode —</option>
+                <option>QRIS (scan QR di halaman Iuran)</option>
+                <option>Tunai (ke Bendahara)</option>
+                <option>Transfer (ke Rekening Kas RT)</option>
+              </select>
+            </label>
+            <label class="span-2">Catatan (opsional) <input type="text" name="catatan" placeholder="Contoh: transfer tanggal 25 Oktober, an. Sari" /></label>
+            <label class="span-2">Upload Bukti Bayar (opsional)
+              <input type="file" name="bukti" id="setoranBukti" accept="image/png,image/jpeg,image/webp" />
+              <small class="muted">Foto / screenshot bukti transfer atau QRIS, maks 950 KB (PNG/JPEG/WebP). Mempercepat verifikasi Bendahara.</small>
+            </label>
+          </div>
+          <div class="alert alert-info">
+            Transfer ke: <strong id="iuranRekening">—</strong><br />
+            Setoran tercatat otomatis setelah diverifikasi Bendahara RT.
+          </div>
+          <button type="submit" class="btn btn-primary">Laporkan Setoran</button>
+        </form>
+
+        <!-- Hasil pengajuan -->
+        <div class="card result hidden" id="formResult">
+          <div class="result-icon">✅</div>
+          <h3 id="resultTitle">Pengajuan diterima!</h3>
+          <div class="notif-box hidden" id="resultNotif"></div>
+          <p id="resultMessage"></p>
+          <div class="result-number">
+            <span>Nomor Pengajuan Anda</span>
+            <strong id="resultNomor">—</strong>
+          </div>
+          <p class="result-note">Simpan nomor ini untuk melacak status pengajuan di menu <a href="#lacak">Lacak Pengajuan</a>.</p>
+          <div class="result-actions">
+            <a class="btn btn-primary hidden" id="resultWaBtn" href="#" target="_blank" rel="noopener">📲 Kirim Kwitansi ke WhatsApp</a>
+            <button class="btn btn-outline" id="copyNomorBtn" type="button">Salin Nomor</button>
+            <button class="btn btn-ghost" id="newFormBtn" type="button">Ajukan Lagi</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Lacak Pengajuan ===== -->
+    <section class="section" id="lacak">
+      <div class="container narrow">
+        <div class="section-head">
+          <span class="section-eyebrow">Pelacakan</span>
+          <h2>Lacak status pengajuan Anda</h2>
+          <p>Masukkan nomor pengajuan yang Anda terima saat mengirim formulir, lalu tekan tombol Lacak.</p>
+        </div>
+        <form class="card form lacak-form" id="lacakForm">
+          <div class="lacak-row">
+            <div class="lacak-input">
+              <span class="lacak-input-icon" aria-hidden="true">🔍</span>
+              <input type="text" id="lacakNomor" required placeholder="S-261024-1A2B" autocomplete="off" spellcheck="false" />
+            </div>
+            <button type="submit" class="btn btn-primary" id="lacakBtn">Lacak Sekarang</button>
+          </div>
+          <div class="lacak-hint">
+            <span class="lacak-icon-label">Awalan nomor sesuai jenis pengajuan — klik untuk mengisi:</span>
+            <span class="lacak-chips">
+              <button type="button" class="chip lacak-chip" data-awalan="S" title="Pengajuan surat">📄 S-… Surat</button>
+              <button type="button" class="chip lacak-chip" data-awalan="A" title="Aduan warga">🛡️ A-… Aduan</button>
+              <button type="button" class="chip lacak-chip" data-awalan="I" title="Setoran iuran">💰 I-… Setoran</button>
+              <button type="button" class="chip lacak-chip" data-awalan="BTS" title="Tanda terima bansos">🎁 BTS-… Bansos</button>
+            </span>
+          </div>
+          <p class="lacak-detected hidden" id="lacakDetected"></p>
+          <div class="lacak-riwayat hidden" id="lacakRiwayat">
+            <span class="muted">Terakhir dicek:</span>
+            <span class="lacak-riwayat-chips" id="lacakRiwayatChips"></span>
+          </div>
+        </form>
+        <div class="track hidden" id="lacakResult" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ===== Iuran & Kas ===== -->
+    <section class="section section-alt" id="iuran">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Transparansi Keuangan</span>
+          <h2>Iuran &amp; Kas RT 04</h2>
+          <p>Laporan keuangan lingkungan yang terbuka untuk seluruh warga.</p>
+        </div>
+        <div class="iuran-grid">
+          <div class="card iuran-info">
+            <h3>💳 Iuran Bulanan</h3>
+            <div class="iuran-amount" id="iuranNominal">—</div>
+            <p id="iuranKeterangan" class="muted">—</p>
+            <div class="iuran-rek">
+              <span>Rekening Kas RT</span>
+              <strong id="iuranRekText">—</strong>
+            </div>
+            <div class="iuran-qris hidden" id="iuranQris">
+              <span>Bayar via QRIS</span>
+              <img id="iuranQrisImg" alt="QRIS Iuran RT 04 RW 12" />
+              <small class="muted">Scan dengan aplikasi bank / e-wallet Anda, lalu unggah bukti bayarnya lewat formulir <a href="#form-surat">Setor Iuran</a>.</small>
+            </div>
+            <a href="#form-surat" class="btn btn-primary btn-block" id="bayarBtn">💰 Setor Iuran Sekarang</a>
+            <small class="muted">Punya tagihan lama atau salah catat? Konfirmasi ke Bendahara via WhatsApp.</small>
+          </div>
+          <div class="card kas-report">
+            <div class="kas-head">
+              <h3>📊 Laporan Kas RT</h3>
+              <span class="muted" id="kasUpdated">—</span>
+            </div>
+            <div class="kas-summary">
+              <div class="kas-box masuk"><span>Pemasukan · Bulan Ini</span><strong id="kasMasuk">—</strong></div>
+              <div class="kas-box keluar"><span>Pengeluaran · Bulan Ini</span><strong id="kasKeluar">—</strong></div>
+              <div class="kas-box saldo"><span>Saldo Bulan Ini</span><strong id="kasSaldo">—</strong></div>
+            </div>
+            <div class="kas-rekap">
+              <div class="kas-rekap-head">
+                <h4>🗓️ Rekapitulasi per Bulan <span id="rekapTahun">—</span></h4>
+                <span class="muted" id="rekapTotal">—</span>
+              </div>
+              <div class="rekap-rows" id="rekapBody"><p class="muted">Memuat rekapitulasi…</p></div>
+            </div>
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr><th>Tanggal</th><th>Keterangan</th><th class="right">Masuk</th><th class="right">Keluar</th></tr>
+                </thead>
+                <tbody id="kasBody">
+                  <tr><td colspan="4" class="muted center">Memuat laporan kas…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Pengumuman ===== -->
+    <section class="section" id="pengumuman">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Informasi Warga</span>
+          <h2>Pengumuman &amp; Agenda RT 04</h2>
+          <p>Kegiatan, jadwal ronda, dan pemberitahuan resmi lingkungan.</p>
+        </div>
+        <div class="pengumuman-list" id="pengumumanList">
+          <div class="muted center">Memuat pengumuman…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Profil ===== -->
+    <section class="section section-alt" id="profil">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Profil Lingkungan</span>
+          <h2> Mengenal RT 04 / RW 12</h2>
+          <p id="profilLokasi">Perum Taman Buah Sukamantri, Kec. Pasar Kemis, Kab. Tangerang</p>
+        </div>
+
+        <div class="profil-tabs" id="profilTabs">
+          <button class="profil-tab active" data-profil="pengurus" type="button">👥 Pengurus RT</button>
+          <button class="profil-tab" data-profil="pkk" type="button">👩 Pengurus Ibu PKK</button>
+          <button class="profil-tab" data-profil="karangtaruna" type="button">🧑‍🤝‍🧑 Pengurus Karang Taruna</button>
+          <button class="profil-tab" data-profil="visi" type="button">🎯 Visi &amp; Misi</button>
+          <button class="profil-tab" data-profil="proker1" type="button">📅 Proker Jangka Pendek</button>
+          <button class="profil-tab" data-profil="proker2" type="button">📆 Proker Jangka Menengah</button>
+          <button class="profil-tab" data-profil="proker3" type="button">🗓️ Proker Jangka Panjang</button>
+          <button class="profil-tab" data-profil="aturan" type="button">📜 Aturan &amp; Ketentuan</button>
+        </div>
+
+        <!-- Pengurus RT -->
+        <section class="profil-panel" id="fp-pengurus">
+          <div class="card">
+            <h3>👥 Struktur Pengurus RT (Periode <span id="periodePengurus">—</span>)</h3>
+            <div class="pengurus-grid" id="pengurusGrid"></div>
+          </div>
+        </section>
+
+        <!-- Pengurus Ibu PKK -->
+        <section class="profil-panel hidden" id="fp-pkk">
+          <div class="card">
+            <h3>👩 Pengurus Ibu PKK (Periode <span id="periodePkk">—</span>)</h3>
+            <div class="pengurus-grid" id="pkkGrid"><p class="muted">Memuat…</p></div>
+          </div>
+        </section>
+
+        <!-- Pengurus Karang Taruna -->
+        <section class="profil-panel hidden" id="fp-karangtaruna">
+          <div class="card">
+            <h3>🧑‍🤝‍🧑 Pengurus Karang Taruna (Periode <span id="periodeKt">—</span>)</h3>
+            <div class="pengurus-grid" id="ktGrid"><p class="muted">Memuat…</p></div>
+          </div>
+        </section>
+
+        <!-- Visi & Misi -->
+        <section class="profil-panel hidden" id="fp-visi">
+          <div class="profil-grid">
+            <div class="card">
+              <h3>🎯 Visi</h3>
+              <p id="visiText" class="profil-quote">—</p>
+            </div>
+            <div class="card">
+              <h3>🗺️ Batas Wilayah</h3>
+              <ul class="batas-list" id="batasList">
+                <li><span>Utara</span><strong>—</strong></li>
+              </ul>
+            </div>
+          </div>
+          <div class="card" style="margin-top:1.25rem">
+            <h3>📜 Misi</h3>
+            <ol class="misi-list" id="misiList"></ol>
+          </div>
+        </section>
+
+        <!-- Program Kerja -->
+        <section class="profil-panel hidden" id="fp-proker1">
+          <div class="card">
+            <h3>📅 Program Kerja Jangka Pendek <span class="muted" style="font-size:.85rem">(0–1 tahun)</span></h3>
+            <ol class="proker-list" id="proker1List"><li class="muted">Memuat…</li></ol>
+          </div>
+        </section>
+        <section class="profil-panel hidden" id="fp-proker2">
+          <div class="card">
+            <h3>📆 Program Kerja Jangka Menengah <span class="muted" style="font-size:.85rem">(1–3 tahun)</span></h3>
+            <ol class="proker-list" id="proker2List"><li class="muted">Memuat…</li></ol>
+          </div>
+        </section>
+        <section class="profil-panel hidden" id="fp-proker3">
+          <div class="card">
+            <h3>🗓️ Program Kerja Jangka Panjang <span class="muted" style="font-size:.85rem">(3–5 tahun)</span></h3>
+            <ol class="proker-list" id="proker3List"><li class="muted">Memuat…</li></ol>
+          </div>
+        </section>
+
+        <!-- Aturan & Ketentuan -->
+        <section class="profil-panel hidden" id="fp-aturan">
+          <div class="card">
+            <h3>📜 Aturan &amp; Ketentuan Warga RT 04</h3>
+            <p class="muted" style="font-size:.9rem;margin-bottom:.8rem">Berlaku untuk seluruh warga RT 04 / RW 12 Perum Taman Buah Sukamantri. Perubahan aturan ditetapkan dalam rapat warga.</p>
+            <ol class="aturan-list" id="aturanList"><li class="muted">Memuat…</li></ol>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===== Kontak ===== -->
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Hubungi Kami</span>
+          <h2>Kantor &amp; Kontak RT 04</h2>
+          <p>Informasi kontak resmi, pengurus yang bertugas, dan kanal pesan untuk warga.</p>
+        </div>
+        <div class="kontak-grid">
+          <div class="card kontak-item">
+            <div class="kontak-icon">📍</div>
+            <h4>Alamat Kantor RT</h4>
+            <p id="kontakAlamat">—</p>
+            <a id="kontakMaps" href="#" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Buka di Google Maps</a>
+          </div>
+          <div class="card kontak-item">
+            <div class="kontak-icon">💬</div>
+            <h4>WhatsApp Pelayanan</h4>
+            <p id="kontakWa">—</p>
+            <a id="kontakWaLink" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Chat Sekarang</a>
+          </div>
+          <div class="card kontak-item">
+            <div class="kontak-icon">📧</div>
+            <h4>Email Resmi</h4>
+            <p id="kontakEmail">—</p>
+            <a id="kontakEmailLink" href="#" class="btn btn-outline btn-sm">Kirim Email</a>
+          </div>
+          <div class="card kontak-item">
+            <div class="kontak-icon">🕐</div>
+            <h4>Jam Pelayanan</h4>
+            <p id="kontakJam">—</p>
+            <span class="muted" style="font-size:.82rem">Pelayanan administrasi RT tanpa biaya siluman.</span>
+          </div>
+        </div>
+
+        <div class="kontak-darurat">
+          <h3>🚨 Kontak Layanan Darurat</h3>
+          <p class="muted" style="font-size:.9rem;margin-bottom:.9rem">Simpan nomor berikut. Untuk kejadian mendesak, hubungi layanan darurat terlebih dahulu, lalu lapor ke pengurus RT 04.</p>
+          <div class="darurat-grid" id="kontakDarurat"><p class="muted">Memuat kontak darurat…</p></div>
+        </div>
+
+        <div class="kontak-dua">
+          <div class="card">
+            <h3>👥 Pengurus yang Bisa Dihubungi</h3>
+            <div class="kontak-pengurus" id="kontakPengurus"><p class="muted">Memuat…</p></div>
+          </div>
+          <div class="card">
+            <h3>✉️ Kirim Pesan untuk Pengurus</h3>
+            <p class="muted" style="font-size:.9rem;margin-bottom:.9rem">Pertanyaan layanan, usulan, atau keperluan lain — pesan langsung masuk ke panel pengurus RT.</p>
+            <form class="form" id="kontakForm">
+              <div class="form-grid">
+                <label>Nama Lengkap <input type="text" name="nama" required placeholder="Nama Anda" /></label>
+                <label>No. HP / Email <input type="text" name="kontak" placeholder="Agar pengurus bisa membalas" /></label>
+                <label class="span-2">Pesan <textarea name="pesan" rows="4" required minlength="10" placeholder="Tulis pesan Anda (minimal 10 karakter)"></textarea></label>
+              </div>
+              <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+              <p class="kontak-form-msg hidden" id="kontakFormMsg"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>RT 04 / RW 12 — Perum Taman Buah Sukamantri</strong>
+        <p class="muted">Desa Sukamantri, Kec. Pasar Kemis, Kab. Tangerang, Banten</p>
+      </div>
+      <div class="footer-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#iuran">Iuran &amp; Kas</a>
+        <a href="#pengumuman">Pengumuman</a>
+        <a href="/admin.html">Panel Pengurus</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="tahun"></span> RT 04 / RW 12 Taman Buah Sukamantri · Portal Layanan RT Terpadu</span>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

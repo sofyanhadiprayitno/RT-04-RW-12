@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Pengurus — RT 04 / RW 12 Taman Buah Sukamantri</title>
+  <meta name="robots" content="noindex" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0d63c4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <style>
+    :root {
+      --green-900: #062a52; --green-800: #0a4a8f; --green-700: #0d63c4; --green-600: #1a7fe0;
+      --green-100: #e3eefc; --green-50: #f0f6fe;
+      --gold: #f5b301; --ink: #10233b; --muted: #5b6e85;
+      --line: #dee8f4; --bg: #f6f9fe; --danger: #d64545; --danger-soft: #fdeaea;
+      --info: #0e7490; --info-soft: #e0f2f7; --violet: #7b4bbf; --violet-soft: #f2ecfc;
+      --shadow: 0 8px 30px rgba(6,42,82,.09);
+      --shadow-lg: 0 22px 50px -18px rgba(6,42,82,.3);
+      --shadow-glow: 0 10px 30px -8px rgba(26,127,224,.45);
+      --grad-utama: linear-gradient(135deg, var(--green-600), var(--green-800));
+      --radius: 18px;
+      --radius-lg: 24px;
+    }
+    .qris-prev { margin-top: 0.5rem; }
+    .qris-prev img { display: block; width: 180px; max-width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 6px; }
+    #qrisRemove { margin-top: 0.5rem; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); font-size: 15px; line-height: 1.55; }
+    /* Ornamen titik latar — konsisten dengan situs publik */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(rgba(13, 99, 196, 0.07) 1.1px, transparent 1.1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+    .container { width: min(1200px, 94%); margin: 0 auto; }
+    .hidden { display: none !important; }
+    .muted { color: var(--muted); }
+    .right { text-align: right; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; padding: .65rem 1.3rem; border-radius: 999px; border: 2px solid transparent; font-weight: 700; font-size: .9rem; font-family: inherit; cursor: pointer; position: relative; overflow: hidden; transition: all .2s cubic-bezier(.2,.8,.2,1); background: var(--grad-utama); color: #fff; box-shadow: var(--shadow-glow); }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 25%, rgba(255,255,255,.35) 50%, transparent 75%);
+      transform: translateX(-120%);
+      transition: transform .5s ease;
+    }
+    .btn:hover::after { transform: translateX(120%); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -8px rgba(26,127,224,.55); }
+    .btn-outline { background: transparent; border-color: var(--green-700); color: var(--green-700); box-shadow: none; }
+    .btn-outline:hover { background: var(--green-700); color: #fff; }
+    .btn-ghost { background: var(--green-100); color: var(--green-900); box-shadow: none; }
+    .btn-ghost:hover { background: var(--green-600); color: #fff; }
+    .btn-sm { padding: .4rem .9rem; font-size: .8rem; }
+    .btn-block { width: 100%; }
+    .btn-danger { background: var(--danger-soft); color: var(--danger); box-shadow: none; }
+    .btn-danger:hover { background: var(--danger); color: #fff; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+    /* Login */
+    .login-wrap { min-height: 100vh; display: grid; place-items: center; padding: 1.5rem;
+      background: radial-gradient(700px 320px at 80% 0%, rgba(245,179,1,.18), transparent 60%), radial-gradient(500px 400px at 8% 100%, rgba(26,127,224,.5), transparent 62%), linear-gradient(160deg, var(--green-900), var(--green-700)); position: relative; overflow: hidden; }
+    .login-card { position: relative; background: #fff; border-radius: var(--radius-lg); padding: 2.3rem; width: min(400px, 100%); box-shadow: 0 30px 70px rgba(0,0,0,.3); text-align: center; animation: loginFloat 8s ease-in-out infinite; }
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 32px;
+      right: 32px;
+      height: 4px;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(90deg, var(--gold), var(--green-600));
+    }
+    @keyframes loginFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    .login-card .brand-badge { width: 58px; height: 58px; margin: 0 auto .8rem; display: grid; place-items: center; background: var(--green-700); color: var(--gold); font-weight: 800; border-radius: 16px; font-size: .9rem; line-height: 1.05; text-align: center; overflow: hidden; }
+    .login-card .brand-badge .brand-logo { width: 100%; height: 100%; object-fit: contain; background: #fff; border-radius: 14px; }
+    .login-card h1 { font-size: 1.15rem; }
+    .login-card p { color: var(--muted); font-size: .88rem; margin: .35rem 0 1.3rem; }
+    .field { text-align: left; margin-bottom: .9rem; }
+    .field label { display: block; font-weight: 700; font-size: .84rem; margin-bottom: .35rem; }
+    .field input, .field select, .field textarea { width: 100%; font-family: inherit; font-size: .95rem; padding: .7rem .85rem; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(26,127,224,.18); }
+    .login-err { background: var(--danger-soft); color: var(--danger); border-radius: 8px; padding: .6rem; font-size: .85rem; margin-bottom: .9rem; }
+    .login-help { margin-top: 1.1rem; padding-top: .9rem; border-top: 1px dashed var(--line); font-size: .82rem; color: var(--muted); }
+    .login-help p { margin-bottom: .55rem; font-size: .84rem; }
+    .login-wa { display: inline-flex; align-items: center; gap: .5rem; background: #25d366; color: #fff; text-decoration: none; font-weight: 700; font-size: .85rem; padding: .55rem 1.1rem; border-radius: 999px; transition: all .15s; }
+    .login-wa:hover { background: #1eb955; transform: translateY(-1px); }
+    .login-wa-ic { font-size: 1rem; }
+
+    /* App shell */
+    .topbar { background: linear-gradient(135deg, var(--green-900), #072b1a); color: #fff; padding: .85rem 0; position: sticky; top: 0; z-index: 40; border-bottom: 3px solid transparent; transition: box-shadow .25s ease, border-bottom-color .25s ease; }
+    .topbar.scrolled { box-shadow: 0 12px 30px -12px rgba(6,42,82,.5); border-bottom-color: var(--gold); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .topbar strong { font-size: .98rem; }
+    .topbar small { display: block; color: rgba(255,255,255,.6); font-size: .76rem; }
+    .topbar .btn-ghost { background: rgba(255,255,255,.14); color: #fff; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem; margin: 1.4rem 0; }
+    .stat-card { position: relative; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.05rem 1.15rem; box-shadow: var(--shadow); transition: transform .22s ease, box-shadow .22s ease; }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-600), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), #ffd45e); }
+    .stat-card:nth-child(3)::before { background: linear-gradient(90deg, var(--info), #7cc0f5); }
+    .stat-card:nth-child(4)::before { background: linear-gradient(90deg, var(--violet), #b79ae8); }
+    .stat-card span { display: block; font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .stat-card strong { font-size: 1.6rem; font-weight: 800; color: var(--green-800); }
+    .stat-card.warn strong { color: var(--danger); }
+    .stat-card.gold strong { color: #8a6100; }
+
+    .tabs { display: flex; gap: .4rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.2rem; }
+    .tab { border: 1.5px solid var(--line); background: #fff; color: var(--muted); font-family: inherit; font-weight: 700; font-size: .88rem; padding: .6rem 1.1rem; border-radius: 999px; cursor: pointer; transition: all .2s ease; }
+    .tab:hover { border-color: var(--green-600); color: var(--green-700); transform: translateY(-2px); }
+    .tab.active { background: var(--grad-utama); border-color: transparent; color: #fff; box-shadow: var(--shadow-glow); }
+
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow); margin-bottom: 1.2rem; }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .panel-head h2 { font-size: 1.05rem; position: relative; padding-bottom: .4rem; }
+    .panel-head h2::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 34px; height: 3.5px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--green-600), var(--gold));
+    }
+
+    .filters { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .filters select { font-family: inherit; font-size: .85rem; padding: .5rem .7rem; border: 1.5px solid var(--line); border-radius: 9px; background: #fff; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: .55rem .6rem; border-bottom: 2px solid var(--line); }
+    td { padding: .65rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+
+    .badge { display: inline-block; font-size: .7rem; font-weight: 800; padding: .18rem .6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; }
+    .badge.menunggu { background: var(--gold-soft, #fff6dd); color: #8a6100; }
+    .badge.diproses { background: var(--info-soft); color: var(--info); }
+    .badge.selesai, .badge.diverifikasi { background: var(--green-100); color: var(--green-700); }
+    .badge.ditolak { background: var(--danger-soft); color: var(--danger); }
+    .badge.jenis { background: #eef2f0; color: var(--muted); }
+
+    .empty { text-align: center; color: var(--muted); padding: 2rem 0; }
+
+    /* Modal */
+    .modal-back { position: fixed; inset: 0; background: rgba(10,30,20,.55); display: grid; place-items: center; padding: 1rem; z-index: 90; }
+    .modal { background: #fff; border-radius: var(--radius); padding: 1.6rem; width: min(560px, 100%); max-height: 90vh; overflow: auto; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
+    .modal h3 { margin-bottom: 1rem; }
+    .modal-lebar { width: min(900px, 100%); }
+    .modal-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1rem; }
+    .detail-box { background: var(--green-50); border: 1px solid var(--line); border-radius: 10px; padding: .9rem; font-size: .88rem; margin-bottom: 1rem; }
+    .detail-box div { display: flex; justify-content: space-between; gap: 1rem; padding: .25rem 0; }
+    .detail-box span { color: var(--muted); }
+
+    .form-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .span-2 { grid-column: span 2; }
+
+    .sub-tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.2rem; justify-content: center; }
+    .sub-tab { border: 1.5px solid var(--line); background: #fff; color: var(--muted); font-family: inherit; font-weight: 700; font-size: .84rem; padding: .5rem 1rem; border-radius: 999px; cursor: pointer; transition: all .2s ease; }
+    .sub-tab:hover { border-color: var(--green-600); color: var(--green-700); transform: translateY(-2px); }
+    .sub-tab.active { background: var(--grad-utama); border-color: transparent; color: #fff; box-shadow: var(--shadow-glow); }
+
+    .filters input[type="search"] { font-family: inherit; font-size: .85rem; padding: .5rem .7rem; border: 1.5px solid var(--line); border-radius: 9px; background: #fff; min-width: 210px; }
+    .filters input[type="search"]:focus { outline: none; border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(26,127,224,.18); }
+    .badge.tetap, .badge.dihuni, .badge.baik { background: var(--green-100); color: var(--green-700); }
+    .badge.kontrak, .badge.perlu_perawatan, .badge.rusak_ringan { background: var(--gold-soft, #fff6dd); color: #8a6100; }
+    .badge.pendatang, .badge.kosong { background: var(--info-soft); color: var(--info); }
+    .badge.terjadwal, .badge.dilaporkan, .badge.baru { background: var(--info-soft); color: var(--info); }
+    .badge.batal, .badge.dibaca { background: #eef2f0; color: var(--muted); }
+    .badge.rusak_berat { background: var(--danger-soft); color: var(--danger); }
+    .badge.lunas { background: var(--green-100); color: var(--green-700); }
+    .badge.belum { background: var(--gold-soft, #fff6dd); color: #8a6100; }
+    .row-actions { display: flex; gap: .35rem; flex-wrap: wrap; }
+    .hak-grid { display: grid; gap: .5rem; }
+    .hak-item { display: flex; align-items: center; gap: .55rem; font-size: .87rem; font-weight: 600; background: var(--green-50); border: 1px solid var(--line); border-radius: 10px; padding: .55rem .7rem; cursor: pointer; }
+    .hak-item input { accent-color: var(--green-700); width: 16px; height: 16px; }
+    .hak-chip { display: inline-block; font-size: .68rem; font-weight: 800; background: var(--green-100); color: var(--green-700); border-radius: 999px; padding: .14rem .55rem; margin: .1rem .15rem .1rem 0; text-transform: uppercase; letter-spacing: .03em; }
+    .hak-chip.off { background: #eef2f0; color: var(--muted); text-decoration: line-through; opacity: .7; }
+    .sub-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0 .8rem; padding-top: 1.2rem; border-top: 1px dashed var(--line); }
+    .sub-head:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .sub-head h3 { font-size: .98rem; }
+
+    /* Kartu iuran */
+    .kartu-wrap { display: flex; justify-content: center; }
+    .kartu-iuran { width: min(680px, 100%); background: #fff; border: 2px solid var(--green-700); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+    .kartu-head { background: linear-gradient(135deg, var(--green-900), var(--green-700)); color: #fff; padding: 1rem 1.3rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .kartu-head h4 { font-size: 1rem; }
+    .kartu-head small { display: block; color: rgba(255,255,255,.7); font-size: .76rem; }
+    .kartu-head .kartu-logo { width: 46px; height: 46px; display: grid; place-items: center; background: rgba(255,255,255,.15); border-radius: 12px; font-weight: 800; font-size: .72rem; line-height: 1.05; text-align: center; }
+    .kartu-body { padding: 1.1rem 1.3rem; }
+    .kartu-ident { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem 1rem; font-size: .87rem; margin-bottom: .9rem; }
+    .kartu-ident div { display: flex; gap: .4rem; }
+    .kartu-ident span { color: var(--muted); min-width: 110px; }
+    .kartu-ident strong { font-weight: 700; }
+    .kartu-riwayat { width: 100%; border-collapse: collapse; font-size: .84rem; margin-top: .4rem; }
+    .kartu-riwayat th { font-size: .7rem; border-bottom: 2px solid var(--line); }
+    .kartu-riwayat td { padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+    .kartu-foot { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1.3rem; background: var(--green-50); border-top: 1px dashed var(--line); font-size: .82rem; flex-wrap: wrap; }
+    .kartu-foot strong { color: var(--green-800); }
+    @media print {
+      .kartu-iuran { border-color: #000; box-shadow: none; }
+      .kartu-head { background: #fff !important; color: #000; border-bottom: 3px double #000; }
+      .kartu-head small { color: #333; }
+      .kartu-head .kartu-logo { background: #fff; border: 2px solid #000; color: #000; }
+    }
+
+    /* Tanda terima bansos */
+    .terima-wrap { display: flex; justify-content: center; }
+    .terima-card { width: min(560px, 100%); background: #fff; border: 2px solid var(--green-700); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+    .terima-kop { background: linear-gradient(135deg, var(--green-900), var(--green-700)); color: #fff; text-align: center; padding: 1rem 1.2rem; }
+    .terima-kop h4 { font-size: 1rem; letter-spacing: .04em; }
+    .terima-kop small { display: block; color: rgba(255,255,255,.75); font-size: .75rem; }
+    .terima-body { padding: 1.1rem 1.3rem; font-size: .9rem; }
+    .terima-body .terima-nomor { text-align: center; font-family: ui-monospace, monospace; font-weight: 800; font-size: 1.05rem; letter-spacing: .05em; margin: .3rem 0 .9rem; color: var(--green-800); }
+    .terima-body .kartu-ident { margin-bottom: .6rem; }
+    .terima-ttd { margin-top: 1.4rem; display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; }
+    .terima-ttd .ttd-box { text-align: center; min-width: 190px; }
+    .terima-ttd .ttd-nama { margin-top: 2.6rem; border-bottom: 1.5px solid #000; font-weight: 700; padding: 0 .5rem; }
+    .terima-ttd small { color: var(--muted); }
+    .terima-catatan { font-size: .78rem; color: var(--muted); margin-top: .9rem; border-top: 1px dashed var(--line); padding-top: .5rem; }
+    @media print {
+      .terima-card { border-color: #000; box-shadow: none; }
+      .terima-kop { background: #fff !important; color: #000; border-bottom: 3px double #000; }
+      .terima-kop small { color: #333; }
+      .terima-body .terima-nomor { color: #000; }
+    }
+
+    .kas-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; margin-bottom: 1rem; }
+    .kas-box { border-radius: 16px; padding: .9rem .8rem; text-align: center; border: 1px solid transparent; transition: transform .2s ease; }
+    .kas-box:hover { transform: translateY(-3px); }
+    .kas-box span { display: block; font-size: .73rem; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    .kas-box strong { font-size: 1.1rem; }
+    .kas-box.m { background: linear-gradient(135deg, var(--green-100), #fff); color: var(--green-700); border-color: #cdebd9; }
+    .kas-box.k { background: linear-gradient(135deg, var(--danger-soft), #fff); color: var(--danger); border-color: #f3c6c6; }
+    .kas-box.s { background: linear-gradient(135deg, #fff6dd, #fff); color: #8a6100; border-color: #f3e0a8; }
+
+    .pengumuman-item { border: 1px solid var(--line); border-left: 5px solid var(--green-600); border-radius: 16px; padding: .95rem 1.1rem; margin-bottom: .7rem; display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; flex-wrap: wrap; background: #fff; transition: transform .22s ease, box-shadow .22s ease; }
+    .pengumuman-item:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+    .tag-chip { display: inline-block; padding: .1rem .5rem; margin: 0 .3rem .3rem 0; border-radius: 999px; font-size: .72rem; background: var(--green-50, #e8f5ec); border: 1px solid var(--line); color: var(--green-700, #1e7a45); }
+    .util-chips { display: flex; flex-direction: column; gap: .2rem; }
+    .util-chip { display: inline-block; width: fit-content; padding: .08rem .5rem; border-radius: 999px; font-size: .7rem; background: var(--gold-soft, #fdf3d7); border: 1px solid var(--line); color: #8a6100; }
+    .aksi-pengajuan { display: flex; gap: .3rem; flex-wrap: wrap; justify-content: flex-end; }
+    .aksi-pengajuan .btn { white-space: nowrap; min-width: 2.1rem; text-align: center; padding: .3rem .45rem; line-height: 1.2; }
+    .aksi-pengajuan .btn:hover { background: var(--green-50, #e8f5ec); }
+    .kirim-mail-isi { width: 100%; min-height: 230px; font-size: .85rem; line-height: 1.55; resize: vertical; }
+    .kirim-mail-hint { font-size: .78rem; color: var(--muted); margin: .35rem 0 .2rem; }
+    .pengumuman-item.off { opacity: .55; }
+    .pengumuman-item h4 { font-size: .95rem; }
+    .pengumuman-item p { font-size: .85rem; color: var(--muted); }
+    .pengumuman-actions { display: flex; gap: .45rem; flex-wrap: wrap; }
+
+    .settings-group { border-top: 1px solid var(--line); padding-top: 1.1rem; margin-top: 1.1rem; }
+    .settings-group:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .settings-group h3 { font-size: .98rem; margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem; cursor: pointer; user-select: none; transition: color .15s; }
+    .settings-group h3::after { content: '▾'; margin-left: auto; font-size: .8em; opacity: .45; transition: transform .25s ease; }
+    .settings-group h3:hover { color: var(--green-700, #0d63c4); }
+    .settings-group.tertutup h3::after { transform: rotate(-90deg); }
+    .settings-group.tertutup > *:not(h3) { display: none !important; }
+    .settings-group.tertutup { opacity: .75; }
+    .settings-group.tertutup:hover { opacity: 1; }
+    /* Sub-nav pengaturan */
+    .set-nav { position: sticky; top: 0; z-index: 30; display: flex; gap: .45rem; overflow-x: auto; padding: .55rem .15rem; margin-bottom: 1rem; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); scrollbar-width: thin; }
+    .set-nav button { flex: 0 0 auto; border: 1px solid var(--line); background: #fff; color: var(--muted, #5b6b83); font: inherit; font-size: .8rem; font-weight: 600; padding: .42rem .8rem; border-radius: 999px; cursor: pointer; transition: all .18s ease; }
+    .set-nav button:hover { border-color: var(--green-600, #1a7fe0); color: var(--green-700, #0d63c4); transform: translateY(-1px); }
+    .set-nav button.aktif { background: var(--green-700, #0d63c4); border-color: var(--green-700, #0d63c4); color: #fff; box-shadow: 0 6px 16px rgba(13,99,196,.28); }
+    /* Sakelar notifikasi */
+    .switch-list { display: grid; gap: .7rem; }
+    .switch-row { display: flex; align-items: center; gap: 1rem; padding: .85rem 1rem; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(135deg, #fff, #f7faff); cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .15s; }
+    .switch-row:hover { border-color: var(--green-600, #1a7fe0); box-shadow: 0 8px 20px rgba(16,60,140,.08); transform: translateY(-1px); }
+    .switch-row input { position: absolute; opacity: 0; pointer-events: none; }
+    .switch-teks { display: grid; gap: .18rem; }
+    .switch-teks strong { font-size: .9rem; }
+    .switch-teks small { color: var(--muted, #5b6b83); font-size: .78rem; line-height: 1.45; }
+    .switch { position: relative; flex: 0 0 auto; width: 46px; height: 26px; border-radius: 999px; background: #cfd8e6; transition: background .2s; }
+    .switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); transition: transform .2s ease; }
+    .switch-row input:checked + .switch { background: linear-gradient(135deg, var(--green-700, #0d63c4), var(--green-600, #1a7fe0)); }
+    .switch-row input:checked + .switch::after { transform: translateX(20px); }
+    .switch-row input:focus-visible + .switch { outline: 2px solid var(--green-600, #1a7fe0); outline-offset: 2px; }
+    /* Kotak panduan notifikasi HP */
+    .hp-box { margin-top: 1rem; padding: 1rem 1.1rem; border-radius: 14px; background: linear-gradient(135deg, #eef5ff, #f7fbff); border: 1px dashed var(--green-600, #1a7fe0); }
+    .hp-box-head { display: flex; justify-content: space-between; align-items: center; gap: .8rem; font-size: .88rem; margin-bottom: .7rem; }
+    .hp-box-head strong { padding: .2rem .7rem; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: .78rem; }
+    .hp-box-acts { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: .7rem; }
+    .hp-steps { margin: 0; padding-left: 1.15rem; display: grid; gap: .35rem; font-size: .79rem; color: var(--muted, #5b6b83); line-height: 1.5; }
+    .mode-pick { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .mode-opt { display: flex; align-items: center; gap: .55rem; flex: 1; min-width: 250px; border: 1.5px solid var(--line); background: #fff; border-radius: 12px; padding: .75rem .9rem; cursor: pointer; font-size: .88rem; color: var(--muted); transition: all .15s ease; }
+    .mode-opt:hover { border-color: var(--green-600); }
+    .mode-opt input { accent-color: var(--green-700); width: 18px; height: 18px; }
+    .mode-opt:has(input:checked) { border-color: var(--green-700); background: var(--green-50); color: var(--ink); box-shadow: 0 0 0 3px rgba(13,99,196,.12); }
+    .mode-opt:has(input:checked) strong { color: var(--green-800); }
+    .field input[disabled] { background: #f2f5f3; color: #9aa8a0; cursor: not-allowed; }
+
+    /* Laporan & grafik */
+    .lap-toolbar { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.2rem; box-shadow: var(--shadow); margin-bottom: 1.2rem; }
+    .lap-filter-row { display: flex; gap: .7rem; flex-wrap: wrap; align-items: flex-end; }
+    .lap-filter-row .field { margin-bottom: 0; min-width: 170px; }
+    .lap-filter-row .btn { margin-bottom: 0; }
+    .lap-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .7rem; margin-bottom: 1.1rem; }
+    .lap-stat { background: var(--green-50); border: 1px solid var(--line); border-radius: 12px; padding: .7rem .85rem; }
+    .lap-stat span { display: block; font-size: .72rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .lap-stat strong { display: block; font-size: 1.15rem; color: var(--green-900); margin-top: .2rem; }
+    .lap-stat small { display: block; color: var(--muted); font-size: .74rem; margin-top: .15rem; }
+    .lap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .lap-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1rem; transition: transform .22s ease, box-shadow .22s ease; }
+    .lap-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .lap-card h4 { font-size: .87rem; margin-bottom: .7rem; color: var(--green-900); }
+    .lap-chart { min-height: 190px; }
+    .lap-chart svg { width: 100%; height: auto; display: block; }
+    .lap-legend { display: flex; flex-wrap: wrap; gap: .35rem .8rem; justify-content: center; margin-top: .55rem; font-size: .74rem; color: var(--muted); }
+    .lap-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; margin-right: .3rem; vertical-align: middle; }
+    .lap-empty { text-align: center; color: var(--muted); font-size: .85rem; padding: 2.4rem 0; }
+
+    /* Denah RT — peta otomatis & interaktif */
+    .denah-toolbar { display: flex; justify-content: space-between; gap: .8rem; flex-wrap: wrap; align-items: center; margin-bottom: 1.1rem; }
+    .denah-filter { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .denah-chip { border: 1.5px solid var(--line); background: #fff; color: var(--muted); font-family: inherit; font-weight: 700; font-size: .8rem; padding: .42rem .95rem; border-radius: 999px; cursor: pointer; transition: all .2s ease; }
+    .denah-chip:hover { border-color: var(--green-600); color: var(--green-700); transform: translateY(-2px); }
+    .denah-chip.active { background: var(--grad-utama); color: #fff; border-color: transparent; box-shadow: var(--shadow-glow); }
+    .denah-legend { display: flex; gap: .9rem; flex-wrap: wrap; font-size: .76rem; color: var(--muted); align-items: center; }
+    .denah-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .3rem; vertical-align: middle; }
+    .denah-legend .dot.dihuni { background: var(--green-600); }
+    .denah-legend .dot.kosong { background: #c9d4e2; }
+    .denah-klaster { margin-bottom: 1.2rem; animation: denahIn .45s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes denahIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .denah-klaster h4 { font-size: .92rem; margin-bottom: .55rem; display: flex; align-items: center; gap: .5rem; }
+    .denah-klaster h4 span { font-size: .7rem; font-weight: 800; background: var(--green-100); color: var(--green-700); border-radius: 999px; padding: .12rem .6rem; }
+    .denah-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(146px, 1fr)); gap: .55rem; }
+    .denah-rumah { position: relative; text-align: center; padding: .7rem .5rem .6rem; border-radius: 14px; border: 2px solid; background: #fff; cursor: pointer; font-family: inherit; transition: transform .2s ease, box-shadow .2s ease; }
+    .denah-rumah:hover { transform: translateY(-4px) scale(1.04); box-shadow: var(--shadow-lg); z-index: 2; }
+    .denah-rumah .ikon { display: block; font-size: 1rem; }
+    .denah-rumah .kode { display: block; font-weight: 800; font-size: .84rem; margin-top: .15rem; }
+    .denah-rumah .kk { display: block; font-size: .7rem; color: var(--muted); margin-top: .1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .denah-rumah.dihuni { border-color: var(--green-600); background: linear-gradient(180deg, var(--green-50), #fff); }
+    .denah-rumah.kosong { border-color: #c9d4e2; border-style: dashed; background: #f4f7fb; opacity: .88; }
+    .denah-rumah.fokus { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .denah-kosong-pesan { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 1.5rem 0; font-size: .88rem; }
+    .denah-fas { display: grid; grid-template-columns: repeat(auto-fill, minmax(235px, 1fr)); gap: .6rem; }
+    .denah-fas-item { display: flex; gap: .6rem; align-items: flex-start; background: var(--green-50); border: 1px solid var(--line); border-radius: 12px; padding: .65rem .8rem; font-size: .83rem; }
+    .denah-fas-item .ikon { font-size: 1.15rem; }
+    .denah-fas-item strong { display: block; font-size: .86rem; }
+    .denah-fas-item small { display: block; color: var(--muted); font-size: .74rem; }
+    .lap-porsi { background: #eef4f0; border-radius: 999px; height: 8px; overflow: hidden; margin: .3rem 0 .15rem; }
+    .lap-porsi i { display: block; height: 100%; background: var(--green-700); border-radius: 999px; }
+
+    @media (max-width: 860px) { .lap-grid { grid-template-columns: 1fr; } }
+    @media print {
+      body::before { display: none !important; }
+      .topbar, .tabs, .stats, .sub-tabs, .lap-toolbar, .no-print { display: none !important; }
+      body { background: #fff; }
+      main.container { padding: 0; }
+      .panel { box-shadow: none; border-color: #ddd; break-inside: avoid; margin-bottom: .8rem; }
+      .lap-card { break-inside: avoid; }
+    }
+    .pengurus-row { display: grid; grid-template-columns: 1fr 1.3fr 1fr 1fr auto; gap: .6rem; margin-bottom: .6rem; align-items: end; }
+    .pengurus-row .field { margin-bottom: 0; }
+
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 120px); background: linear-gradient(135deg, var(--green-800), var(--green-900)); color: #fff; padding: .75rem 1.25rem; border-radius: 999px; font-size: .88rem; font-weight: 600; opacity: 0; transition: all .3s; z-index: 200; max-width: 92vw; text-align: center; box-shadow: var(--shadow-glow); }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .toast.error { background: var(--danger); }
+
+    /* Cetak surat */
+    #printArea { display: none; }
+    @media print {
+      body * { visibility: hidden !important; }
+      #printArea, #printArea * { visibility: visible !important; }
+      #printArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; padding: 0; }
+      @page { margin: 1.6cm 2cm; }
+    }
+    /* Cetak panel data (warga, KK, rumah, usaha, denah, laporan) */
+    .cetak-panel { color: #000; font-size: 11pt; line-height: 1.45; }
+    .cetak-kop { text-align: center; margin-bottom: 6px; }
+    .cetak-kop img { max-width: 100%; max-height: 110px; object-fit: contain; }
+    .cetak-judul { text-align: center; border-bottom: 3px double #000; padding-bottom: 8px; margin-bottom: 14px; }
+    .cetak-judul h3 { font-size: 14pt; margin: 0; text-transform: uppercase; letter-spacing: .03em; }
+    .cetak-judul p { font-size: 10pt; margin: 5px 0 0; color: #333; }
+    .cetak-panel h3, .cetak-panel h4 { font-size: 12pt; margin: 14px 0 6px; color: #000; }
+    .cetak-panel .table-wrap { overflow: visible !important; }
+    .cetak-panel table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+    .cetak-panel th, .cetak-panel td { border: 1px solid #999; padding: 4px 6px; text-align: left; vertical-align: top; }
+    .cetak-panel th { background: #eee !important; color: #000 !important; font-weight: 700; }
+    .cetak-panel .kas-sum { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: .5rem; }
+    .cetak-panel .kas-box { border: 1px solid #999; background: #fff !important; color: #000 !important; box-shadow: none; border-radius: 6px; }
+    .cetak-panel .kas-box span { color: #333 !important; }
+    .cetak-panel .muted, .cetak-panel small { color: #444 !important; }
+    .cetak-panel .empty { text-align: center; color: #555; padding: .8rem; }
+    .surat { color: #000; font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; }
+    .surat-kop { text-align: center; border-bottom: 3px double #000; padding-bottom: 8px; margin-bottom: 4px; }
+    .surat-kop h1 { font-size: 14pt; margin: 0; letter-spacing: .04em; }
+    .surat-kop h2 { font-size: 13pt; margin: 2px 0; text-transform: uppercase; }
+    .surat-kop p { font-size: 10.5pt; margin: 1px 0; }
+    .surat-kop-gambar { text-align: center; margin-bottom: 6px; }
+    .surat-kop-gambar img { max-width: 100%; max-height: 110px; object-fit: contain; }
+    .surat-title { text-align: center; margin: 14px 0 2px; }
+    .surat-title h3 { font-size: 13pt; text-decoration: underline; margin: 0; text-transform: uppercase; }
+    .surat-title p { font-size: 11.5pt; margin: 2px 0; }
+    .surat-body { text-align: justify; margin-top: 12px; }
+    .surat-body ol { margin: 8px 0 8px 24px; }
+    .surat-body li { margin-bottom: 3px; }
+    .surat-ttd { margin-top: 26px; display: flex; justify-content: flex-end; }
+    .surat-ttd .block { text-align: center; width: 260px; }
+    .surat-ttd .nama { margin-top: 62px; text-decoration: underline; font-weight: bold; }
+
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .form-2 { grid-template-columns: 1fr; }
+      .span-2 { grid-column: span 1; }
+      .pengurus-row { grid-template-columns: 1fr 1fr; }
+      .kas-sum { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Login ===== -->
+  <div class="login-wrap" id="loginView">
+    <div class="login-card">
+      <div class="brand-badge" id="loginBadge">RT<br />04</div>
+      <h1>Panel Pengurus RT 04 / RW 12</h1>
+      <p>Perum Taman Buah Sukamantri · Kec. Pasar Kemis, Kab. Tangerang</p>
+      <div class="login-err hidden" id="loginErr"></div>
+      <form id="loginForm">
+        <div class="field">
+          <label for="loginUser">Nama Pengguna <span class="muted" style="font-weight:400">(opsional)</span></label>
+          <input type="text" id="loginUser" autocomplete="username" placeholder="Kosongkan untuk admin sistem RT" />
+        </div>
+        <div class="field">
+          <label for="loginPass">Kata Sandi Pengurus</label>
+          <input type="password" id="loginPass" required autocomplete="current-password" placeholder="Masukkan kata sandi" />
+        </div>
+        <button class="btn btn-block" type="submit">Masuk</button>
+      </form>
+      <div class="login-help">
+        <p>Lupa kata sandi? Hubungi admin sistem RT 04</p>
+        <a class="login-wa" id="loginWa" href="https://wa.me/6281234567890" target="_blank" rel="noopener">
+          <span class="login-wa-ic">💬</span> WhatsApp Admin RT 04
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Aplikasi ===== -->
+  <div id="appView" class="hidden">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div>
+          <strong>Panel Pengurus — RT 04 / RW 12</strong>
+          <small>Layanan RT Terpadu · Perum Taman Buah Sukamantri</small>
+        </div>
+        <div style="display:flex;gap:.5rem">
+          <a class="btn btn-ghost btn-sm" href="/" target="_blank">🌐 Lihat Website</a>
+          <button class="btn btn-ghost btn-sm" id="logoutBtn">Keluar</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container" style="padding-bottom:3rem">
+      <!-- Statistik -->
+      <div class="stats">
+        <div class="stat-card warn"><span>Perlu Tindakan</span><strong id="stMenunggu">0</strong></div>
+        <div class="stat-card"><span>Total Pengajuan</span><strong id="stTotal">0</strong></div>
+        <div class="stat-card gold"><span>Setoran Belum Diverifikasi</span><strong id="stSetoran">0</strong></div>
+        <div class="stat-card"><span>Saldo Kas</span><strong id="stSaldo">—</strong></div>
+      </div>
+
+      <!-- Tab -->
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-panel="pengajuan">📋 Pengajuan</button>
+        <button class="tab" data-panel="keuangan">💰 Keuangan</button>
+        <button class="tab" data-panel="data">🗂️ Data Warga &amp; Fasilitas</button>
+        <button class="tab" data-panel="denah">🗺️ Denah RT</button>
+        <button class="tab" data-panel="bansos">🎁 Bansos</button>
+        <button class="tab" data-panel="inventaris">📦 Inventaris</button>
+        <button class="tab" data-panel="keamanan">🛡️ Keamanan</button>
+        <button class="tab" data-panel="pengumuman">📢 Pengumuman</button>
+        <button class="tab" data-panel="log">📜 Log Aktivitas</button>
+        <button class="tab" data-panel="laporan">📊 Laporan</button>
+        <button class="tab" data-panel="pengaturan">⚙️ Pengaturan</button>
+      </div>
+
+      <!-- Pengajuan -->
+      <section class="panel" id="panel-pengajuan">
+        <div class="panel-head">
+          <h2>Pengajuan Surat &amp; Aduan Warga</h2>
+          <div class="filters">
+            <select id="filterStatus">
+              <option value="">Semua status</option>
+              <option value="menunggu">Menunggu</option>
+              <option value="diproses">Diproses</option>
+              <option value="selesai">Selesai</option>
+              <option value="ditolak">Ditolak</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadPengajuan">Muat Ulang</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tanggal</th><th>Nomor</th><th>Jenis</th><th>Pemohon</th><th>Keperluan / Kategori</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody id="pengajuanBody"><tr><td colspan="7" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="sub-head" style="margin-top:1.5rem">
+          <h3>📩 Pesan dari Halaman Kontak <span class="muted" id="pesanBaruLabel"></span></h3>
+          <div class="filters">
+            <select id="filterPesan">
+              <option value="">Semua pesan</option>
+              <option value="baru">Belum dibaca</option>
+              <option value="dibaca">Sudah dibaca</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadPesan" type="button">Muat Ulang</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Diterima</th><th>Pengirim</th><th>Kontak</th><th>Pesan</th><th>Status</th><th></th></tr></thead>
+            <tbody id="pesanBody"><tr><td colspan="6" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Keuangan (menu induk: Setoran Iuran, Kas RT, Kartu Iuran) -->
+      <div class="hidden panel-group" id="panel-keuangan">
+        <div class="sub-tabs" id="subTabsKeuangan">
+          <button class="sub-tab active" data-sub="setoran">💰 Setoran Iuran</button>
+          <button class="sub-tab" data-sub="iuran-tahunan">📅 Iuran Tahunan</button>
+          <button class="sub-tab" data-sub="kas">📊 Kas RT</button>
+          <button class="sub-tab" data-sub="kartu">💳 Kartu Iuran</button>
+        </div>
+
+      <!-- Setoran -->
+      <section class="panel" id="panel-setoran">
+        <div class="panel-head">
+          <h2>Setoran Iuran Warga</h2>
+          <div class="filters">
+            <select id="filterSetoran">
+              <option value="">Semua status</option>
+              <option value="menunggu">Menunggu</option>
+              <option value="diverifikasi">Terverifikasi</option>
+              <option value="ditolak">Ditolak</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadSetoran">Muat Ulang</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tanggal</th><th>Nomor</th><th>Nama</th><th>Blok</th><th>Nominal</th><th>Metode</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody id="setoranBody"><tr><td colspan="8" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Iuran Tahunan -->
+      <section class="panel hidden" id="panel-iuran-tahunan">
+        <div class="panel-head">
+          <h2>Iuran Tahunan Warga</h2>
+          <div class="filters">
+            <input type="search" id="cariIuranTahunan" placeholder="Cari nama / blok…" style="min-width:170px" />
+            <select id="filterIuranTahunan">
+              <option value="">Semua status</option>
+              <option value="lunas">Lunas</option>
+              <option value="belum">Belum bayar</option>
+            </select>
+            <select id="filterTahunIuran"></select>
+            <button class="btn btn-ghost btn-sm" id="reloadIuranTahunan">Muat Ulang</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Terkumpul</span><strong id="itTerkumpul">—</strong></div>
+          <div class="kas-box k"><span>Target</span><strong id="itTarget">—</strong></div>
+          <div class="kas-box s"><span>Lunas / Belum</span><strong id="itLunasBelum">—</strong></div>
+        </div>
+        <div style="display:flex;gap:.6rem;align-items:flex-end;flex-wrap:wrap;margin:1rem 0;background:var(--green-50);padding:.9rem 1rem;border-radius:12px">
+          <div class="field" style="margin:0"><label>Buat daftar iuran untuk semua warga</label>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+              <input type="number" id="itGenTahun" placeholder="Tahun" style="width:100px" />
+              <input type="number" id="itGenNominal" placeholder="Nominal (Rp)" min="1000" step="1000" style="width:150px" />
+              <button class="btn btn-sm" id="itGenerate" type="button">Buat Daftar</button>
+            </div>
+          </div>
+        </div>
+        <form class="form-2" id="iuranTahunanForm" style="margin-bottom:1.1rem;background:var(--green-50);padding:1rem;border-radius:12px">
+          <div class="field"><label>Warga *</label>
+            <select name="warga_id" id="itWarga" required><option value="">— Pilih warga —</option></select>
+          </div>
+          <div class="field"><label>Tahun *</label><input type="number" name="tahun" min="2020" max="2100" required /></div>
+          <div class="field"><label>Nominal (Rp) *</label><input type="number" name="nominal" min="1000" step="1000" required /></div>
+          <div class="field"><label>Metode</label>
+            <select name="metode">
+              <option value="tunai">Tunai</option>
+              <option value="transfer">Transfer</option>
+              <option value="qris">QRIS</option>
+              <option value="setor_bank">Setor Bank</option>
+            </select>
+          </div>
+          <div class="field"><label>Tanggal Bayar</label><input type="date" name="tanggal" /></div>
+          <div class="field span-2"><label>Keterangan</label><input type="text" name="keterangan" placeholder="Contoh: Iuran tahunan 2026 dibayar lunas" /></div>
+          <div class="field" style="display:flex;align-items:flex-end"><button class="btn btn-block" type="submit">Catat Pembayaran (Lunas)</button></div>
+        </form>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Warga</th><th>Blok</th><th>Tahun</th><th class="right">Nominal</th><th>Tanggal Bayar</th><th>Metode</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody id="iuranTahunanBody"><tr><td colspan="8" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Kas -->
+      <section class="panel hidden" id="panel-kas">
+        <div class="panel-head">
+          <h2>Buku Kas RT 04</h2>
+          <button class="btn btn-ghost btn-sm" id="reloadKas">Muat Ulang</button>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Pemasukan</span><strong id="kMasuk">—</strong></div>
+          <div class="kas-box k"><span>Pengeluaran</span><strong id="kKeluar">—</strong></div>
+          <div class="kas-box s"><span>Saldo</span><strong id="kSaldo">—</strong></div>
+        </div>
+        <form class="form-2" id="kasForm" style="margin-bottom:1.1rem;background:var(--green-50);padding:1rem;border-radius:12px">
+          <div class="field"><label>Tanggal</label><input type="date" name="tanggal" required /></div>
+          <div class="field"><label>Jenis</label>
+            <select name="jenis"><option value="keluar">Pengeluaran</option><option value="masuk">Pemasukan (non-iuran)</option></select>
+          </div>
+          <div class="field span-2"><label>Keterangan</label><input type="text" name="keterangan" required placeholder="Contoh: Beli sapu lidi & karung" /></div>
+          <div class="field"><label>Nominal (Rp)</label><input type="number" name="nominal" min="1000" step="1000" required /></div>
+          <div class="field" style="display:flex;align-items:flex-end"><button class="btn btn-block" type="submit">Catat Transaksi</button></div>
+        </form>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tanggal</th><th>Keterangan</th><th class="right">Masuk</th><th class="right">Keluar</th><th></th></tr></thead>
+            <tbody id="kasBodyAdmin"><tr><td colspan="5" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Kartu Iuran -->
+      <section class="panel hidden" id="panel-kartu">
+        <div class="panel-head">
+          <h2>Kartu Iuran Warga</h2>
+          <div class="filters">
+            <select id="kartuWarga"><option value="">— Pilih warga —</option></select>
+            <button class="btn btn-sm" id="tampilkanKartu" type="button">Tampilkan</button>
+            <button class="btn btn-ghost btn-sm hidden" id="cetakKartu" type="button">🖨️ Cetak Kartu</button>
+          </div>
+        </div>
+        <div id="kartuArea"><div class="empty">Pilih warga untuk menampilkan kartu iurannya.</div></div>
+      </section>
+      </div><!-- /panel-keuangan -->
+
+      <!-- Data Warga & Fasilitas (menu induk dengan sub-menu) -->
+      <div class="hidden panel-group" id="panel-data">
+        <div class="sub-tabs" id="subTabsData">
+          <button class="sub-tab active" data-sub="warga">👥 Data Warga</button>
+          <button class="sub-tab" data-sub="kk">🪪 Data KK</button>
+          <button class="sub-tab" data-sub="rumah">🏘️ Rumah &amp; Fasilitas</button>
+          <button class="sub-tab" data-sub="usaha">🏪 Usaha Warga</button>
+        </div>
+
+        <section class="panel" id="panel-warga">
+        <div class="panel-head">
+          <h2>Data Warga RT 04 / RW 12</h2>
+          <div class="filters">
+            <input type="search" id="cariWarga" placeholder="Cari nama, NIK, blok…" />
+            <select id="filterWarga">
+              <option value="">Semua status</option>
+              <option value="tetap">Warga Tetap</option>
+              <option value="kontrak">Kontrak</option>
+              <option value="pendatang">Pendatang</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadWarga">Muat Ulang</button>
+            <button class="btn btn-ghost btn-sm" id="importWarga" type="button">📊 Import Excel</button>
+            <button class="btn btn-ghost btn-sm" id="scanWarga" type="button">🤖 Pindai KTP/KK</button>
+            <button class="btn btn-ghost btn-sm" id="printWarga" type="button">🖨️ Cetak</button>
+            <button class="btn btn-sm" id="tambahWarga" type="button">+ Tambah Warga</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total Warga</span><strong id="wTotal">—</strong></div>
+          <div class="kas-box s"><span>Laki-laki</span><strong id="wLaki">—</strong></div>
+          <div class="kas-box s"><span>Perempuan</span><strong id="wPerempuan">—</strong></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>NIK</th><th>L/P</th><th>Blok</th><th>No. HP</th><th>Pekerjaan</th><th>Status</th><th>KK</th><th></th></tr></thead>
+            <tbody id="wargaBody"><tr><td colspan="9" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Data KK -->
+      <section class="panel hidden" id="panel-kk">
+        <div class="panel-head">
+          <h2>Data Kartu Keluarga (KK)</h2>
+          <div class="filters">
+            <input type="search" id="cariKK" placeholder="Cari nomor KK, kepala keluarga, blok…" />
+            <button class="btn btn-ghost btn-sm" id="reloadKK">Muat Ulang</button>
+            <button class="btn btn-ghost btn-sm" id="printKK" type="button">🖨️ Cetak</button>
+            <button class="btn btn-sm" id="tambahKK" type="button">+ Tambah KK</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total KK</span><strong id="kkTotal">—</strong></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nomor KK</th><th>Kepala Keluarga</th><th>Blok</th><th>Jumlah Anggota</th><th>No. HP</th><th>Alamat</th><th></th></tr></thead>
+            <tbody id="kkBody"><tr><td colspan="7" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Rumah & Fasilitas -->
+      <section class="panel hidden" id="panel-rumah">
+        <div class="panel-head">
+          <h2>Rumah &amp; Fasilitas</h2>
+          <div class="filters">
+            <input type="search" id="cariRumah" placeholder="Cari kode / penghuni…" />
+            <select id="filterRumah">
+              <option value="">Semua status</option>
+              <option value="dihuni">Dihuni</option>
+              <option value="kosong">Kosong</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadRumah">Muat Ulang</button>
+            <button class="btn btn-ghost btn-sm" id="printRumah" type="button">🖨️ Cetak</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total Rumah</span><strong id="rTotal">—</strong></div>
+          <div class="kas-box s"><span>Dihuni</span><strong id="rDihuni">—</strong></div>
+          <div class="kas-box k"><span>Kosong</span><strong id="rKosong">—</strong></div>
+        </div>
+
+        <div class="sub-head">
+          <h3>🏠 Rumah</h3>
+          <button class="btn btn-sm" id="tambahRumah" type="button">+ Tambah Rumah</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Kode</th><th>Penghuni / Kepala Keluarga</th><th>Status</th><th>Kepemilikan</th><th>No. HP</th><th>Utilitas</th><th>Tag</th><th>Keterangan</th><th></th></tr></thead>
+            <tbody id="rumahBody"><tr><td colspan="9" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="sub-head">
+          <h3>🚰 Fasilitas <span class="muted" id="fasTotal"></span></h3>
+          <div class="filters">
+            <input type="search" id="cariFasilitas" placeholder="Cari nama / lokasi…" />
+            <select id="filterFasKondisi">
+              <option value="">Semua kondisi</option>
+              <option value="baik">Baik</option>
+              <option value="perlu_perawatan">Perlu Perawatan</option>
+              <option value="rusak_ringan">Rusak Ringan</option>
+              <option value="rusak_berat">Rusak Berat</option>
+            </select>
+            <button class="btn btn-sm" id="tambahFasilitas" type="button">+ Tambah Fasilitas</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>Kategori</th><th>Lokasi</th><th>Jumlah</th><th>Kondisi</th><th>Tag</th><th>Diperiksa</th><th></th></tr></thead>
+            <tbody id="fasBody"><tr><td colspan="8" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+        <!-- Usaha Warga (UMKM) -->
+        <section class="panel hidden" id="panel-usaha">
+        <div class="sub-head">
+          <h3>🏪 Usaha Warga (UMKM) <span class="muted" id="usahaTotal"></span></h3>
+          <div class="filters">
+            <input type="search" id="cariUsaha" placeholder="Cari usaha / pemilik…" />
+            <select id="filterUsaha">
+              <option value="">Semua kategori</option>
+              <option value="kuliner">Kuliner</option>
+              <option value="kerajinan">Kerajinan</option>
+              <option value="jasa">Jasa</option>
+              <option value="pertanian">Pertanian</option>
+              <option value="perdagangan">Perdagangan</option>
+              <option value="elektronik">Elektronik</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="printUsaha" type="button">🖨️ Cetak</button>
+            <button class="btn btn-sm" id="tambahUsaha" type="button">+ Tambah Usaha</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nama Usaha</th><th>Pemilik</th><th>Kategori</th><th>Blok</th><th>No. HP</th><th>Deskripsi</th><th></th></tr></thead>
+            <tbody id="usahaBody"><tr><td colspan="7" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+        </section>
+        </div><!-- /panel-data -->
+
+      <!-- Denah RT (peta otomatis dari data rumah & fasilitas) -->
+      <section class="panel hidden" id="panel-denah">
+        <div class="panel-head">
+          <h2>🗺️ Denah RT 04 / RW 12 — Perum Taman Buah Sukamantri</h2>
+          <div class="filters">
+            <input type="search" id="denahCari" placeholder="Cari kode / kepala keluarga…" />
+            <button class="btn btn-ghost btn-sm" id="denahSegar" type="button">🔄 Segarkan</button>
+            <button class="btn btn-ghost btn-sm" id="printDenah" type="button">🖨️ Cetak</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card"><span>Total Rumah</span><strong id="dnTotal">—</strong></div>
+          <div class="stat-card"><span>Dihuni</span><strong id="dnDihuni">—</strong></div>
+          <div class="stat-card warn"><span>Kosong</span><strong id="dnKosong">—</strong></div>
+          <div class="stat-card gold"><span>Tingkat Terisi</span><strong id="dnPersen">—</strong></div>
+        </div>
+
+        <div class="denah-toolbar no-print">
+          <div class="denah-filter" id="denahFilter">
+            <button class="denah-chip active" data-status="" type="button">Semua Rumah</button>
+            <button class="denah-chip" data-status="dihuni" type="button">🏠 Dihuni</button>
+            <button class="denah-chip" data-status="kosong" type="button">🔑 Kosong</button>
+          </div>
+          <div class="denah-legend">
+            <span><i class="dot dihuni"></i> Dihuni</span>
+            <span><i class="dot kosong"></i> Kosong</span>
+            <span>💡 Klik rumah untuk detail penghuni</span>
+          </div>
+        </div>
+
+        <div class="denah-area" id="denahArea"><p class="empty">Memuat denah…</p></div>
+
+        <div class="sub-head">
+          <h3>📍 Fasilitas Lingkungan di Peta</h3>
+          <span class="muted" id="denahFasInfo" style="font-size:.8rem">—</span>
+        </div>
+        <div class="denah-fas" id="denahFas"><p class="muted" style="font-size:.88rem">Memuat fasilitas…</p></div>
+      </section>
+
+      <!-- Bansos -->
+      <section class="panel hidden" id="panel-bansos">
+        <div class="panel-head">
+          <h2>Bantuan Sosial (Bansos)</h2>
+          <div class="filters">
+            <button class="btn btn-ghost btn-sm" id="reloadBansos">Muat Ulang</button>
+            <button class="btn btn-sm" id="tambahBansos" type="button">+ Program Baru</button>
+          </div>
+        </div>
+        <div id="bansosList"><div class="empty">Memuat…</div></div>
+
+        <div class="sub-head">
+          <h3>Daftar Penerima &amp; Tanda Terima</h3>
+          <div class="filters">
+            <select id="bansosPilih"><option value="">— Pilih program —</option></select>
+            <button class="btn btn-ghost btn-sm" id="reloadPenerima" type="button">Muat Ulang</button>
+            <button class="btn btn-sm" id="tambahPenerima" type="button">+ Tambah Penerima</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>Blok</th><th>No. HP</th><th>Nominal</th><th>Keterangan</th><th>Status</th><th></th></tr></thead>
+            <tbody id="penerimaBody"><tr><td colspan="7" class="empty">Pilih program bantuan untuk melihat penerima.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Inventaris -->
+      <section class="panel hidden" id="panel-inventaris">
+        <div class="panel-head">
+          <h2>Inventaris Peralatan &amp; Perlengkapan</h2>
+          <div class="filters">
+            <input type="search" id="cariBarang" placeholder="Cari barang / lokasi…" />
+            <select id="filterBarang">
+              <option value="">Semua kategori</option>
+              <option value="elektronik">Elektronik</option>
+              <option value="perkakas">Perkakas</option>
+              <option value="furniture">Furniture</option>
+              <option value="olahraga">Olahraga</option>
+              <option value="kebersihan">Kebersihan</option>
+              <option value="dokumen">Dokumen</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+            <button class="btn btn-ghost btn-sm" id="reloadBarang">Muat Ulang</button>
+            <button class="btn btn-sm" id="tambahBarang" type="button">+ Tambah Barang</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total Unit</span><strong id="invTotal">—</strong></div>
+          <div class="kas-box k"><span>Sedang Dipinjam</span><strong id="invDipinjam">—</strong></div>
+          <div class="kas-box s"><span>Tersedia</span><strong id="invTersedia">—</strong></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Barang</th><th>Kategori</th><th>Stok</th><th>Kondisi</th><th>Lokasi</th><th></th></tr></thead>
+            <tbody id="barangBody"><tr><td colspan="6" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="sub-head">
+          <h3>🔁 Peminjaman &amp; Pengembalian</h3>
+          <div class="filters">
+            <select id="filterPinjaman">
+              <option value="">Semua status</option>
+              <option value="dipinjam">Sedang Dipinjam</option>
+              <option value="kembali">Sudah Kembali</option>
+            </select>
+            <button class="btn btn-sm" id="tambahPinjaman" type="button">+ Catat Peminjaman</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Barang</th><th>Peminjam</th><th>Jml</th><th>Pinjam</th><th>Target</th><th>Biaya</th><th>Status</th><th></th></tr></thead>
+            <tbody id="pinjamanBody"><tr><td colspan="8" class="empty">Belum ada peminjaman.</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="sub-head">
+          <h3>📒 Buku Keuangan Peminjaman</h3>
+          <span class="muted" style="font-size:.8rem">Biaya sewa/pemakaian alat yang tercatat</span>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total Biaya</span><strong id="bkTotal">—</strong></div>
+          <div class="kas-box s"><span>Sudah Lunas</span><strong id="bkLunas">—</strong></div>
+          <div class="kas-box k"><span>Belum Lunas</span><strong id="bkBelum">—</strong></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tanggal</th><th>Peminjam</th><th>Barang</th><th class="right">Biaya</th><th>Status</th></tr></thead>
+            <tbody id="bukuBody"><tr><td colspan="5" class="empty">Belum ada transaksi biaya.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Keamanan (menu induk: Jadwal Ronda, Laporan Kejadian) -->
+      <div class="hidden panel-group" id="panel-keamanan">
+        <div class="sub-tabs">
+          <button class="sub-tab active" data-sub="ronda">🚔 Jadwal Ronda</button>
+          <button class="sub-tab" data-sub="kejadian">🚨 Laporan Kejadian</button>
+          <button class="sub-tab" data-sub="tamu">📒 Buku Tamu</button>
+        </div>
+
+        <section class="panel" id="panel-ronda">
+          <div class="panel-head">
+            <h2>Jadwal Ronda &amp; Keamanan Lingkungan</h2>
+            <div class="filters">
+              <input type="search" id="cariRonda" placeholder="Cari regu / petugas / pos…" />
+              <select id="filterRonda">
+                <option value="">Semua status</option>
+                <option value="terjadwal">Terjadwal</option>
+                <option value="selesai">Selesai</option>
+                <option value="batal">Batal</option>
+              </select>
+              <button class="btn btn-ghost btn-sm" id="reloadRonda" type="button">Muat Ulang</button>
+            </div>
+          </div>
+          <div class="kas-sum">
+            <div class="kas-box m"><span>Total Jadwal</span><strong id="roTotal">—</strong></div>
+            <div class="kas-box s"><span>Akan Datang</span><strong id="roMendatang">—</strong></div>
+            <div class="kas-box k"><span>Selesai Dilaksanakan</span><strong id="roSelesai">—</strong></div>
+          </div>
+          <form class="form-2" id="rondaForm" style="margin-bottom:1.1rem;background:var(--green-50);padding:1rem;border-radius:12px">
+            <div class="field"><label>Tanggal *</label><input type="date" name="tanggal" required /></div>
+            <div class="field"><label>Regu *</label><input type="text" name="regu" required placeholder="mis. Regu 1" /></div>
+            <div class="field"><label>Pos Ronda</label><input type="text" name="pos" placeholder="Pos depan gerbang" /></div>
+            <div class="field"><label>Status</label>
+              <select name="status">
+                <option value="terjadwal">Terjadwal</option>
+                <option value="selesai">Selesai</option>
+                <option value="batal">Batal</option>
+              </select>
+            </div>
+            <div class="field span-2"><label>Petugas (pisahkan dengan koma)</label><input type="text" name="petugas" placeholder="Budi, Siti, Joko" /></div>
+            <div class="field span-2"><label>Catatan</label><input type="text" name="catatan" placeholder="Opsional" /></div>
+            <div class="field" style="display:flex;align-items:flex-end;gap:.5rem">
+              <button class="btn btn-block" type="submit" id="rondaSubmit">+ Tambah Jadwal</button>
+              <button class="btn btn-ghost hidden" type="button" id="rondaBatal" style="white-space:nowrap">Batal Ubah</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tanggal</th><th>Regu</th><th>Petugas</th><th>Pos</th><th>Status</th><th>Catatan</th><th></th></tr></thead>
+              <tbody id="rondaBody"><tr><td colspan="7" class="empty">Memuat…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel hidden" id="panel-kejadian">
+          <div class="panel-head">
+            <h2>Laporan Kejadian &amp; Penanganan</h2>
+            <div class="filters">
+              <input type="search" id="cariKejadian" placeholder="Cari nomor / lokasi / kronologi…" />
+              <select id="filterKejStatus">
+                <option value="">Semua status</option>
+                <option value="dilaporkan">Dilaporkan</option>
+                <option value="diproses">Diproses</option>
+                <option value="selesai">Selesai</option>
+              </select>
+              <select id="filterKejJenis">
+                <option value="">Semua jenis</option>
+                <option value="pencurian">Pencurian</option>
+                <option value="kecelakaan">Kecelakaan</option>
+                <option value="kebakaran">Kebakaran</option>
+                <option value="perselisihan">Perselisihan</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+              <button class="btn btn-ghost btn-sm" id="reloadKejadian" type="button">Muat Ulang</button>
+            </div>
+          </div>
+          <div class="kas-sum">
+            <div class="kas-box m"><span>Total Laporan</span><strong id="kjTotal">—</strong></div>
+            <div class="kas-box k"><span>Belum Selesai</span><strong id="kjTerbuka">—</strong></div>
+            <div class="kas-box s"><span>Kejadian Bulan Ini</span><strong id="kjBulan">—</strong></div>
+          </div>
+          <form class="form-2" id="kejadianForm" style="margin-bottom:1.1rem;background:var(--green-50);padding:1rem;border-radius:12px">
+            <div class="field"><label>Tanggal Kejadian *</label><input type="date" name="tanggal" required /></div>
+            <div class="field"><label>Jenis</label>
+              <select name="jenis">
+                <option value="pencurian">Pencurian</option>
+                <option value="kecelakaan">Kecelakaan</option>
+                <option value="kebakaran">Kebakaran</option>
+                <option value="perselisihan">Perselisihan</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div class="field"><label>Lokasi</label><input type="text" name="lokasi" placeholder="mis. Blok C, depan pos" /></div>
+            <div class="field"><label>Pelapor</label><input type="text" name="pelapor" placeholder="Nama pelapor" /></div>
+            <div class="field span-2"><label>Kronologi *</label><textarea name="kronologi" rows="2" required placeholder="Jelaskan kejadian minimal 10 karakter"></textarea></div>
+            <div class="field span-2"><label>Penanganan / Tindak Lanjut</label><textarea name="penanganan" rows="2" placeholder="Ditulis saat status diperbarui"></textarea></div>
+            <div class="field"><label>Status</label>
+              <select name="status">
+                <option value="dilaporkan">Dilaporkan</option>
+                <option value="diproses">Diproses</option>
+                <option value="selesai">Selesai</option>
+              </select>
+            </div>
+            <div class="field" style="display:flex;align-items:flex-end;gap:.5rem">
+              <button class="btn btn-block" type="submit" id="kejadianSubmit">+ Catat Kejadian</button>
+              <button class="btn btn-ghost hidden" type="button" id="kejadianBatal" style="white-space:nowrap">Batal Ubah</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tanggal</th><th>Nomor</th><th>Jenis</th><th>Lokasi</th><th>Pelapor</th><th>Kronologi</th><th>Status</th><th></th></tr></thead>
+              <tbody id="kejadianBody"><tr><td colspan="8" class="empty">Memuat…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel hidden" id="panel-tamu">
+          <div class="panel-head">
+            <h2>Buku Tamu &amp; Kunjungan</h2>
+            <div class="filters">
+              <input type="search" id="cariTamu" placeholder="Cari nama / asal / keperluan…" />
+              <select id="filterTamu">
+                <option value="">Semua tamu</option>
+                <option value="di_dalam">Masih di Dalam</option>
+                <option value="keluar">Sudah Keluar</option>
+              </select>
+              <button class="btn btn-ghost btn-sm" id="reloadTamu" type="button">Muat Ulang</button>
+            </div>
+          </div>
+          <div class="kas-sum">
+            <div class="kas-box m"><span>Total Kunjungan</span><strong id="btTotal">—</strong></div>
+            <div class="kas-box k"><span>Masih di Dalam</span><strong id="btDalam">—</strong></div>
+            <div class="kas-box s"><span>Tamu Hari Ini</span><strong id="btHari">—</strong></div>
+          </div>
+          <form class="form-2" id="tamuForm" style="margin-bottom:1.1rem;background:var(--green-50);padding:1rem;border-radius:12px">
+            <div class="field"><label>Nama Tamu *</label><input type="text" name="nama" required placeholder="Nama lengkap tamu" /></div>
+            <div class="field"><label>Asal / Rumah</label><input type="text" name="asal" placeholder="mis. Jambu 2 No. 8" /></div>
+            <div class="field"><label>No. HP</label><input type="tel" name="no_hp" /></div>
+            <div class="field"><label>Petugas Jaga</label><input type="text" name="petugas" placeholder="Nama petugas pos" /></div>
+            <div class="field span-2"><label>Keperluan *</label><input type="text" name="keperluan" required placeholder="mis. Mengantar paket / tamu keluarga" /></div>
+            <div class="field span-2"><label>Catatan</label><input type="text" name="catatan" placeholder="Opsional" /></div>
+            <div class="field" style="display:flex;align-items:flex-end;gap:.5rem">
+              <button class="btn btn-block" type="submit" id="tamuSubmit">+ Catat Tamu Masuk</button>
+              <button class="btn btn-ghost hidden" type="button" id="tamuBatal" style="white-space:nowrap">Batal Ubah</button>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Masuk</th><th>Nama</th><th>Asal</th><th>No. HP</th><th>Keperluan</th><th>Petugas</th><th>Keluar</th><th></th></tr></thead>
+              <tbody id="tamuBody"><tr><td colspan="8" class="empty">Memuat…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </div><!-- /panel-keamanan -->
+
+      <!-- Pengumuman -->
+      <section class="panel hidden" id="panel-pengumuman">
+        <div class="panel-head"><h2>Pengumuman &amp; Agenda Warga</h2></div>
+        <form class="form-2" id="pengumumanForm" style="margin-bottom:1.2rem;background:var(--green-50);padding:1rem;border-radius:12px">
+          <div class="field span-2"><label>Judul</label><input type="text" name="judul" required placeholder="Judul pengumuman" /></div>
+          <div class="field"><label>Kategori</label>
+            <select name="kategori">
+              <option value="pengumuman">Pengumuman</option>
+              <option value="agenda">Agenda Kegiatan</option>
+              <option value="ronda">Jadwal Ronda</option>
+              <option value="kerja_bakti">Kerja Bakti</option>
+            </select>
+          </div>
+          <div class="field"><label>Tanggal Kegiatan (opsional)</label><input type="date" name="tanggal" /></div>
+          <div class="field span-2"><label>Isi</label><textarea name="isi" rows="3" required placeholder="Isi pengumuman..."></textarea></div>
+          <div class="span-2"><button class="btn" type="submit">Terbitkan Pengumuman</button></div>
+        </form>
+        <div id="pengumumanAdminList"><div class="empty">Memuat…</div></div>
+      </section>
+
+      <!-- Log Aktivitas -->
+      <section class="panel hidden" id="panel-log">
+        <div class="panel-head">
+          <h2>Log Aktivitas</h2>
+          <div class="filters">
+            <input type="search" id="cariLog" placeholder="Cari pengguna / aksi / keterangan…" />
+            <select id="filterLogModul"><option value="">Semua modul</option></select>
+            <button class="btn btn-ghost btn-sm" id="reloadLog" type="button">Muat Ulang</button>
+            <button class="btn btn-danger btn-sm" id="bersihkanLog" type="button">🗑 Bersihkan</button>
+          </div>
+        </div>
+        <div class="kas-sum">
+          <div class="kas-box m"><span>Total Aktivitas</span><strong id="lgTotal">—</strong></div>
+          <div class="kas-box s"><span>Hari Ini</span><strong id="lgHari">—</strong></div>
+          <div class="kas-box k"><span>Ditolak / Gagal</span><strong id="lgGagal">—</strong></div>
+        </div>
+        <p class="muted" style="font-size:.85rem">Catatan otomatis setiap aksi di panel &amp; pengajuan warga — login, penambahan, perubahan, penghapusan, hingga penolakan akses (403). Maksimal 1.000 entri terakhir disimpan.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Waktu</th><th>Pengguna</th><th>Modul</th><th>Aksi</th><th>Keterangan</th><th>IP</th></tr></thead>
+            <tbody id="logBody"><tr><td colspan="6" class="empty">Memuat…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Laporan & Statistik -->
+      <div class="hidden panel-group" id="panel-laporan">
+        <div class="sub-tabs" id="subTabsLaporan">
+          <button class="sub-tab active" data-sub="lap-pengajuan">📋 Pengajuan</button>
+          <button class="sub-tab" data-sub="lap-keuangan">💰 Keuangan, Iuran &amp; Kas</button>
+          <button class="sub-tab" data-sub="lap-data">👥 Warga, KK, Rumah &amp; Fasilitas</button>
+          <button class="sub-tab" data-sub="lap-usaha">🏪 Usaha Warga</button>
+          <button class="sub-tab" data-sub="lap-bansos">🎁 Bansos</button>
+          <button class="sub-tab" data-sub="lap-inventaris">📦 Inventaris &amp; Peminjaman</button>
+          <button class="sub-tab" data-sub="lap-keamanan">🛡️ Ronda, Kejadian &amp; Buku Tamu</button>
+          <button class="sub-tab" data-sub="lap-pengumuman">📢 Pengumuman</button>
+          <button class="sub-tab" data-sub="lap-demografi">🏙️ Demografi &amp; Kependudukan</button>
+          <button class="sub-tab" data-sub="lap-denah">🗺️ Denah RT</button>
+          <button class="sub-tab" data-sub="lap-pesan">✉️ Pesan Kontak</button>
+          <button class="sub-tab" data-sub="lap-log">📜 Log Aktivitas</button>
+        </div>
+
+        <div class="lap-toolbar no-print">
+          <div class="lap-filter-row">
+            <div class="field"><label>Dari Tanggal</label><input type="date" id="lapDari" /></div>
+            <div class="field"><label>Sampai Tanggal</label><input type="date" id="lapSampai" /></div>
+            <button class="btn" type="button" id="lapTerapkan">🔍 Terapkan Periode</button>
+            <button class="btn btn-ghost" type="button" id="lapReset">Semua Waktu</button>
+            <button class="btn btn-outline" type="button" id="lapCetak">🖨️ Cetak / Simpan PDF</button>
+          </div>
+          <p class="muted" id="lapPeriode">Periode: semua waktu · data dimuat otomatis saat laporan dibuka.</p>
+        </div>
+
+        <!-- 1. Pengajuan -->
+        <section class="panel lap-sub" id="panel-lap-pengajuan">
+          <div class="panel-head"><h2>📋 Laporan Pengajuan Surat &amp; Aduan</h2></div>
+          <div class="lap-stats" id="lpPengStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Pengajuan per Bulan</h4><div class="lap-chart" id="lpPengBulan"></div></div>
+            <div class="lap-card"><h4>Status Surat</h4><div class="lap-chart" id="lpPengStatus"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Jenis Surat Terbanyak</h4><div class="lap-chart" id="lpPengJenis"></div></div>
+            <div class="lap-card"><h4>Kategori Aduan Warga</h4><div class="lap-chart" id="lpPengAduanKat"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Jenis Surat</th><th>Jumlah</th><th>Porsi</th></tr></thead>
+              <tbody id="lpPengJenisBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 2. Keuangan, Iuran & Kas -->
+        <section class="panel lap-sub hidden" id="panel-lap-keuangan">
+          <div class="panel-head"><h2>💰 Laporan Keuangan, Iuran &amp; Kas</h2></div>
+          <div class="lap-stats" id="lpKasStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kas Masuk vs Keluar per Bulan</h4><div class="lap-chart" id="lpKasBulan"></div></div>
+            <div class="lap-card"><h4>Setoran Iuran per Bulan (Rp)</h4><div class="lap-chart" id="lpIuranBulan"></div></div>
+          </div>
+          <div class="lap-stats" id="lpIuranStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Metode Pembayaran</h4><div class="lap-chart" id="lpIuranMetode"></div></div>
+            <div class="lap-card"><h4>Status Setoran</h4><div class="lap-chart" id="lpIuranStatus"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Metode</th><th>Jumlah Setoran</th><th>Nominal</th></tr></thead>
+              <tbody id="lpIuranMetodeBody"></tbody>
+            </table>
+          </div>
+
+          <!-- Iuran Tahunan: perbandingan antar tahun -->
+          <div class="lap-stats" id="lpITStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Perbandingan Iuran Tahunan — Tagihan vs Terkumpul (Rp)</h4><div class="lap-chart" id="lpITBanding"></div></div>
+            <div class="lap-card"><h4>Lunas vs Belum Bayar per Tahun (jiwa)</h4><div class="lap-chart" id="lpITLunas"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tahun</th><th class="right">Tagihan</th><th class="right">Lunas</th><th class="right">Belum</th><th class="right">Terkumpul</th><th>Realisasi</th></tr></thead>
+              <tbody id="lpITBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 3. Data warga, KK, rumah & fasilitas -->
+        <section class="panel lap-sub hidden" id="panel-lap-data">
+          <div class="panel-head"><h2>👥 Laporan Data Warga, KK, Rumah &amp; Fasilitas</h2></div>
+          <div class="lap-stats" id="lpDataStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Jenis Kelamin Warga</h4><div class="lap-chart" id="lpWargaKelamin"></div></div>
+            <div class="lap-card"><h4>Status Domisili Warga</h4><div class="lap-chart" id="lpWargaStatus"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Warga Terbanyak per Blok</h4><div class="lap-chart" id="lpWargaBlok"></div></div>
+            <div class="lap-card"><h4>Status Huni Rumah</h4><div class="lap-chart" id="lpRumahHuni"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kondisi Fasilitas</h4><div class="lap-chart" id="lpFasKondisi"></div></div>
+            <div class="lap-card"><h4>Kepemilikan Rumah</h4><div class="lap-chart" id="lpRumahMilik"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kategori Fasilitas</th><th>Jumlah</th></tr></thead>
+              <tbody id="lpFasKatBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 4. Usaha warga -->
+        <section class="panel lap-sub hidden" id="panel-lap-usaha">
+          <div class="panel-head"><h2>🏪 Laporan Usaha Warga (UMKM)</h2></div>
+          <div class="lap-stats" id="lpUsahaStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Usaha per Kategori</h4><div class="lap-chart" id="lpUsahaKat"></div></div>
+            <div class="lap-card"><h4>Sebaran Kategori</h4><div class="lap-chart" id="lpUsahaDonat"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kategori Usaha</th><th>Jumlah</th><th>Porsi</th></tr></thead>
+              <tbody id="lpUsahaBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 5. Bansos -->
+        <section class="panel lap-sub hidden" id="panel-lap-bansos">
+          <div class="panel-head"><h2>🎁 Laporan Bansos &amp; Pendistribusian</h2></div>
+          <div class="lap-stats" id="lpBansosStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Penerima per Bulan</h4><div class="lap-chart" id="lpBansosBulan"></div></div>
+            <div class="lap-card"><h4>Status Penyaluran</h4><div class="lap-chart" id="lpBansosStatus"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Program per Jenis Bantuan</h4><div class="lap-chart" id="lpBansosJenis"></div></div>
+            <div class="lap-card"><h4>Penerima per Kelompok (Program)</h4><div class="lap-chart" id="lpBansosKelompok"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kelompok / Program</th><th>Jenis</th><th>Jumlah Penerima</th><th>Total Nominal</th></tr></thead>
+              <tbody id="lpBansosKelompokBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 6. Inventaris -->
+        <section class="panel lap-sub hidden" id="panel-lap-inventaris">
+          <div class="panel-head"><h2>📦 Laporan Inventaris, Peralatan &amp; Peminjaman</h2></div>
+          <div class="lap-stats" id="lpInvStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Barang per Kategori</h4><div class="lap-chart" id="lpBarangKat"></div></div>
+            <div class="lap-card"><h4>Kondisi Barang</h4><div class="lap-chart" id="lpBarangKondisi"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Peminjaman per Bulan</h4><div class="lap-chart" id="lpPinjamBulan"></div></div>
+            <div class="lap-card"><h4>Status Peminjaman</h4><div class="lap-chart" id="lpPinjamStatus"></div></div>
+          </div>
+          <h4 style="margin:1.1rem 0 .6rem">Daftar Peminjaman &amp; Pengembalian</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Peminjam</th><th>Barang</th><th>Tgl Pinjam</th><th>Tgl Target</th><th>Tgl Kembali</th><th>Status</th><th>Biaya</th></tr></thead>
+              <tbody id="lpPinjamBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 7. Keamanan -->
+        <section class="panel lap-sub hidden" id="panel-lap-keamanan">
+          <div class="panel-head"><h2>🛡️ Laporan Ronda, Kejadian &amp; Buku Tamu</h2></div>
+          <div class="lap-stats" id="lpKeamStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Jadwal Ronda per Bulan</h4><div class="lap-chart" id="lpRondaBulan"></div></div>
+            <div class="lap-card"><h4>Status Ronda</h4><div class="lap-chart" id="lpRondaStatus"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kejadian per Bulan</h4><div class="lap-chart" id="lpKejBulan"></div></div>
+            <div class="lap-card"><h4>Jenis Kejadian</h4><div class="lap-chart" id="lpKejJenis"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kunjungan Buku Tamu per Bulan</h4><div class="lap-chart" id="lpTamuBulan"></div></div>
+            <div class="lap-card"><h4>Status Kejadian</h4><div class="lap-chart" id="lpKejStatus"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tanggal</th><th>Regu</th><th>Petugas</th><th>Pos</th><th>Status</th></tr></thead>
+              <tbody id="lpRondaBody"></tbody>
+            </table>
+          </div>
+          <div class="table-wrap" style="margin-top:1rem">
+            <table>
+              <thead><tr><th>Tanggal</th><th>Nomor</th><th>Jenis</th><th>Lokasi</th><th>Pelapor</th><th>Status</th></tr></thead>
+              <tbody id="lpKejadianBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 8. Pengumuman -->
+        <section class="panel lap-sub hidden" id="panel-lap-pengumuman">
+          <div class="panel-head"><h2>📢 Laporan Pengumuman per Kategori</h2></div>
+          <div class="lap-stats" id="lpPengumStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Pengumuman per Kategori</h4><div class="lap-chart" id="lpPengumKat"></div></div>
+            <div class="lap-card"><h4>Pengumuman per Bulan</h4><div class="lap-chart" id="lpPengumBulan"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kategori</th><th>Jumlah</th><th>Porsi</th></tr></thead>
+              <tbody id="lpPengumBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 9. Demografi & Kependudukan -->
+        <section class="panel lap-sub hidden" id="panel-lap-demografi">
+          <div class="panel-head"><h2>🏙️ Laporan Demografi &amp; Kependudukan</h2></div>
+          <div class="lap-stats" id="lpDemogStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kelompok Usia</h4><div class="lap-chart" id="lpDemogUsia"></div></div>
+            <div class="lap-card"><h4>Jenis Kelamin</h4><div class="lap-chart" id="lpDemogKelamin"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Pendidikan</h4><div class="lap-chart" id="lpDemogPendidikan"></div></div>
+            <div class="lap-card"><h4>Pekerjaan</h4><div class="lap-chart" id="lpDemogPekerjaan"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Status Perkawinan</h4><div class="lap-chart" id="lpDemogPerkawinan"></div></div>
+            <div class="lap-card"><h4>Agama</h4><div class="lap-chart" id="lpDemogAgama"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Status Tinggal Warga</h4><div class="lap-chart" id="lpDemogTinggal"></div></div>
+            <div class="lap-card"><h4>Status Domisili</h4><div class="lap-chart" id="lpDemogDomisili"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Kepemilikan Rumah &amp; Usaha</h4><div class="lap-chart" id="lpDemogRumah"></div></div>
+            <div class="lap-card"><h4>Kepemilikan Kendaraan</h4><div class="lap-chart" id="lpDemogKendaraan"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Daya Listrik</h4><div class="lap-chart" id="lpDemogListrik"></div></div>
+            <div class="lap-card"><h4>Sumber Air Bersih</h4><div class="lap-chart" id="lpDemogAir"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Jaringan Internet</h4><div class="lap-chart" id="lpDemogInternet"></div></div>
+            <div class="lap-card"><h4>Kamera Pengawas (CCTV)</h4><div class="lap-chart" id="lpDemogCctv"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Disabilitas</h4><div class="lap-chart" id="lpDemogDisabilitas"></div></div>
+            <div class="lap-card"><h4>Rekapitulasi Kependudukan</h4><div class="lap-chart" id="lpDemogRekapChart"></div></div>
+          </div>
+          <h4 style="margin:1.1rem 0 .6rem">Rekapitulasi Jumlah &amp; Persentase</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Kategori</th><th>Pos</th><th class="right">Jumlah</th><th class="right">Persentase</th></tr></thead>
+              <tbody id="lpDemogBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 10. Denah RT -->
+        <section class="panel lap-sub hidden" id="panel-lap-denah">
+          <div class="panel-head"><h2>🗺️ Laporan Denah RT &amp; Sebaran Blok</h2></div>
+          <div class="lap-stats" id="lpDenahStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Rumah per Blok (Dihuni vs Kosong)</h4><div class="lap-chart" id="lpDenahBlok"></div></div>
+            <div class="lap-card"><h4>Status Huni &amp; Kepemilikan</h4><div class="lap-chart" id="lpDenahHuni"></div></div>
+          </div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Fasilitas per Kategori</h4><div class="lap-chart" id="lpDenahFas"></div></div>
+            <div class="lap-card"><h4>Kondisi Fasilitas</h4><div class="lap-chart" id="lpDenahKondisi"></div></div>
+          </div>
+          <h4 style="margin:1.1rem 0 .6rem">Sebaran Rumah per Blok</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Blok</th><th class="right">Rumah</th><th class="right">Dihuni</th><th class="right">Kosong</th><th class="right">Milik</th><th class="right">Kontrak</th><th class="right">Terisi</th></tr></thead>
+              <tbody id="lpDenahBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 11. Pesan Kontak Warga -->
+        <section class="panel lap-sub hidden" id="panel-lap-pesan">
+          <div class="panel-head"><h2>✉️ Laporan Pesan Kontak Warga</h2></div>
+          <div class="lap-stats" id="lpPesanStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Pesan Masuk per Bulan</h4><div class="lap-chart" id="lpPesanBulan"></div></div>
+            <div class="lap-card"><h4>Status Pesan</h4><div class="lap-chart" id="lpPesanStatus"></div></div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Pengirim</th><th>Kontak</th><th>Pesan</th><th>Status</th><th>Waktu</th></tr></thead>
+              <tbody id="lpPesanBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 12. Log Aktivitas -->
+        <section class="panel lap-sub hidden" id="panel-lap-log">
+          <div class="panel-head"><h2>📜 Laporan Log Aktivitas Panel</h2></div>
+          <div class="lap-stats" id="lpLogStats"></div>
+          <div class="lap-grid">
+            <div class="lap-card"><h4>Aktivitas per Bulan</h4><div class="lap-chart" id="lpLogBulan"></div></div>
+            <div class="lap-card"><h4>Aktivitas per Modul</h4><div class="lap-chart" id="lpLogModul"></div></div>
+          </div>
+          <h4 style="margin:1.1rem 0 .6rem">100 Aktivitas Terakhir</h4>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Waktu</th><th>Pengguna</th><th>Modul</th><th>Aksi</th><th class="right">Status</th><th>Keterangan</th></tr></thead>
+              <tbody id="lpLogBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div><!-- /panel-laporan -->
+
+      <!-- Pengaturan -->
+      <section class="panel hidden" id="panel-pengaturan">
+        <div class="panel-head">
+          <h2>Pengaturan Website</h2>
+          <button class="btn" id="saveSettings">💾 Simpan Semua Pengaturan</button>
+        </div>
+
+        <nav class="set-nav" id="setNav" aria-label="Bagian pengaturan">
+          <button type="button" data-idx="0">👤 Profil RT</button>
+          <button type="button" data-idx="1">🏛️ Pengurus RT</button>
+          <button type="button" data-idx="2">👩‍👧 Ibu PKK</button>
+          <button type="button" data-idx="3">🎯 Karang Taruna</button>
+          <button type="button" data-idx="4">📋 Program Kerja</button>
+          <button type="button" data-idx="5">📜 Aturan Warga</button>
+          <button type="button" data-idx="6">📞 Kontak</button>
+          <button type="button" data-idx="7">💰 Iuran &amp; Kas</button>
+          <button type="button" data-idx="8">🎨 Tampilan &amp; Logo</button>
+          <button type="button" data-idx="9">🔢 Penomoran Surat</button>
+          <button type="button" data-idx="10">🔔 Notifikasi</button>
+          <button type="button" data-idx="11">👥 Pengguna Panel</button>
+          <button type="button" data-idx="12">💾 Backup &amp; Reset</button>
+        </nav>
+
+        <div class="settings-group">
+          <h3>👤 Profil RT</h3>
+          <div class="form-2">
+            <div class="field"><label>Perumahan</label><input type="text" id="setPerum" /></div>
+            <div class="field"><label>Desa</label><input type="text" id="setDesa" /></div>
+            <div class="field"><label>Kecamatan</label><input type="text" id="setKec" /></div>
+            <div class="field"><label>Kabupaten</label><input type="text" id="setKab" /></div>
+            <div class="field"><label>Kode Pos</label><input type="text" id="setPos" /></div>
+            <div class="field"><label>Jumlah Rumah</label><input type="number" id="setRumah" /></div>
+            <div class="field"><label>Jumlah Warga</label><input type="number" id="setWarga" /></div>
+            <div class="field"><label>Jumlah KK</label><input type="number" id="setKK" /></div>
+            <div class="field span-2"><label>Visi</label><textarea id="setVisi" rows="2"></textarea></div>
+            <div class="field span-2"><label>Misi (satu baris satu poin)</label><textarea id="setMisi" rows="5"></textarea></div>
+            <div class="field"><label>Batas Utara</label><input type="text" id="setUtara" /></div>
+            <div class="field"><label>Batas Selatan</label><input type="text" id="setSelatan" /></div>
+            <div class="field"><label>Batas Timur</label><input type="text" id="setTimur" /></div>
+            <div class="field"><label>Batas Barat</label><input type="text" id="setBarat" /></div>
+            <div class="field span-2"><label>Sejarah Singkat</label><textarea id="setSejarah" rows="3"></textarea></div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>🏛️ Pengurus RT</h3>
+          <div id="pengurusRows"></div>
+          <button class="btn btn-outline btn-sm" id="addPengurus" type="button">+ Tambah Pengurus</button>
+        </div>
+
+        <div class="settings-group">
+          <h3>👩‍👧 Pengurus Ibu PKK</h3>
+          <div id="pkkRows"></div>
+          <button class="btn btn-outline btn-sm" id="addPkk" type="button">+ Tambah Pengurus PKK</button>
+        </div>
+
+        <div class="settings-group">
+          <h3>🎯 Pengurus Karang Taruna</h3>
+          <div id="ktRows"></div>
+          <button class="btn btn-outline btn-sm" id="addKt" type="button">+ Tambah Pengurus Karang Taruna</button>
+        </div>
+
+        <div class="settings-group">
+          <h3>📋 Program Kerja (ditampilkan di halaman Profil RT)</h3>
+          <div class="form-2">
+            <div class="field span-2"><label>Jangka Pendek (0–1 tahun) — satu baris: Judul | Keterangan | Periode</label>
+              <textarea id="setProker1" rows="5" placeholder="Ronda malam terpadu | Enam regu bergilir tiap pekan | Bulanan"></textarea>
+            </div>
+            <div class="field span-2"><label>Jangka Menengah (1–3 tahun) — satu baris: Judul | Keterangan | Periode</label>
+              <textarea id="setProker2" rows="5" placeholder="Renovasi pos ronda | CCTV gerbang | 2027"></textarea>
+            </div>
+            <div class="field span-2"><label>Jangka Panjang (3–5 tahun) — satu baris: Judul | Keterangan | Periode</label>
+              <textarea id="setProker3" rows="5" placeholder="Lingkungan hijau | Rehab drainase | 2029"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>📜 Aturan &amp; Ketentuan Warga RT 04</h3>
+          <div class="field">
+            <label>Satu baris satu aturan</label>
+            <textarea id="setAturan" rows="8" placeholder="Wajib membayar iuran bulanan paling lambat tanggal 10 setiap bulan."></textarea>
+            <small class="muted">Tampil bernomor di halaman Profil RT → Aturan &amp; Ketentuan.</small>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>📞 Kontak &amp; Pelayanan</h3>
+          <div class="form-2">
+            <div class="field span-2"><label>Alamat</label><input type="text" id="setAlamat" /></div>
+            <div class="field"><label>No. WhatsApp (format 628xx)</label><input type="text" id="setWa" /></div>
+            <div class="field"><label>Email</label><input type="email" id="setEmail" /></div>
+            <div class="field"><label>Jam Pelayanan</label><input type="text" id="setJam" /></div>
+            <div class="field"><label>Link Google Maps</label><input type="url" id="setMaps" /></div>
+            <div class="field span-2"><label>Kontak Layanan Darurat (satu baris satu kontak: Layanan | Nomor)</label>
+              <textarea id="setDarurat" rows="5" placeholder="Polisi (Polsek / 110) | 110&#10;Pemadam Kebakaran (113) | 113"></textarea>
+              <small class="muted">Ditampilkan sebagai kartu darurat di halaman Kontak website.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>💰 Iuran &amp; Kas</h3>
+          <div class="form-2">
+            <div class="field"><label>Iuran Bulanan (Rp)</label><input type="number" id="setIuran" /></div>
+            <div class="field"><label>Rekening Kas</label><input type="text" id="setRek" /></div>
+            <div class="field span-2"><label>Keterangan Iuran</label><textarea id="setIuranKet" rows="2"></textarea></div>
+            <div class="field span-2"><label>QRIS Iuran — gambar QRIS milik RT (PNG/JPEG/WebP, maks 580 KB)</label>
+              <input type="file" id="setQris" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="qrisPrev"><img id="qrisPrevImg" alt="Pratinjau QRIS" /></div>
+              <button class="btn btn-danger btn-sm" type="button" id="qrisRemove">Hapus QRIS</button>
+            </div>
+          </div>
+        </div>
+        <div class="settings-group">
+          <h3>🎨 Tema, Warna, Latar, Gambar Hero &amp; Logo</h3>
+          <div class="form-2">
+            <div class="field"><label>Warna Utama Tema Website</label><input type="color" id="setWarnaTema" value="#0d63c4" style="height:44px;padding:.2rem" /></div>
+            <div class="field"><label>Warna Latar Layar</label><input type="color" id="setWarnaLatar" value="#f6f9fe" style="height:44px;padding:.2rem" /></div>
+            <div class="field span-2"><label>Logo Website (header portal)</label>
+              <input type="file" id="setLogo" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="logoPrev"><img id="logoPrevImg" alt="Pratinjau logo website" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="logoRemove">Hapus Logo</button>
+            </div>
+            <div class="field span-2"><label>Logo Halaman Login Panel Pengurus</label>
+              <input type="file" id="setLogoLogin" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="logoLoginPrev"><img id="logoLoginPrevImg" alt="Pratinjau logo login" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="logoLoginRemove">Hapus Logo Login</button>
+            </div>
+            <div class="field span-2"><label>Gambar Latar Belakang Website</label>
+              <input type="file" id="setLatar" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="latarPrev"><img id="latarPrevImg" alt="Pratinjau latar" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="latarRemove">Hapus Latar</button>
+            </div>
+            <div class="field span-2"><label>Gambar Hero Biru — latar foto bagian atas halaman beranda (pita biru)</label>
+              <input type="file" id="setHero" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="heroPrev"><img id="heroPrevImg" alt="Pratinjau gambar hero" style="max-height:120px" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="heroRemove">Hapus Gambar Hero</button>
+            </div>
+            <div class="field span-2"><label>Ikon / Favicon (website &amp; panel)</label>
+              <input type="file" id="setIcon" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="iconPrev"><img id="iconPrevImg" alt="Pratinjau ikon" style="width:64px" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="iconRemove">Hapus Ikon</button>
+            </div>
+            <div class="field span-2"><label>Gambar Kop Surat (untuk cetak Surat Pengantar)</label>
+              <input type="file" id="setKopSurat" accept="image/png,image/jpeg,image/webp" />
+              <div class="qris-prev hidden" id="kopSuratPrev"><img id="kopSuratPrevImg" alt="Pratinjau kop surat" style="max-height:120px" /></div>
+              <button class="btn btn-danger btn-sm hidden" type="button" id="kopSuratRemove">Hapus Kop Surat</button>
+            </div>
+          </div>
+          <p class="muted" style="font-size:.82rem;margin-top:.6rem">Format PNG/JPEG/WebP — logo maks 300 KB, latar maks 525 KB, gambar hero maks 525 KB, ikon maks 150 KB, kop surat maks 450 KB. Warna tema &amp; latar memakai pemilih warna; klik <strong>Simpan Semua Pengaturan</strong> agar berlaku di website.</p>
+        </div>
+
+        <div class="settings-group">
+          <h3>🔢 Penomoran Surat</h3>
+          <p class="muted" style="font-size:.84rem;margin-bottom:.9rem">Tentukan cara sistem membuat nomor pengajuan surat warga. <strong>Otomatis</strong> menghasilkan nomor acak berbasis tanggal (mis. S-261025-8F3A); <strong>Manual</strong> menghasilkan nomor urut berurutan sesuai awalan dan nomor awal yang Anda tentukan — centang salah satu.</p>
+          <div class="mode-pick">
+            <label class="mode-opt" for="nomOtomatis"><input type="radio" name="penomoranMode" id="nomOtomatis" value="otomatis" checked /><span><strong>Otomatis</strong> — nomor dibuat sistem, unik &amp; berurutan acak</span></label>
+            <label class="mode-opt" for="nomManual"><input type="radio" name="penomoranMode" id="nomManual" value="manual" /><span><strong>Manual</strong> — nomor urut sesuai pengaturan Anda</span></label>
+          </div>
+          <div class="form-2" style="margin-top:.9rem">
+            <div class="field"><label>Awalan Nomor Surat</label><input type="text" id="setNomAwalan" maxlength="6" placeholder="S" autocomplete="off" /></div>
+            <div class="field"><label>Nomor Urut Berikutnya</label><input type="number" id="setNomUrut" min="1" max="999999" step="1" /></div>
+            <div class="field"><label>Panjang Nomor (digit)</label><input type="number" id="setNomDigit" min="1" max="8" step="1" /></div>
+            <div class="field"><label>Contoh Nomor Pengajuan Berikutnya</label><input type="text" id="nomorPreview" readonly style="background:var(--green-50);font-weight:700" /></div>
+          </div>
+          <p class="muted" style="font-size:.82rem">Mode <strong>Manual</strong> berlaku untuk pengajuan surat warga; pengurus tetap mengisi <em>Nomor Surat</em> resmi saat menyetujui pengajuan. Klik <strong>Simpan Semua Pengaturan</strong> agar pengaturan berlaku.</p>
+        </div>
+
+        <div class="settings-group">
+          <h3>🔔 Notifikasi Urusan RT (WhatsApp &amp; Notifikasi HP)</h3>
+          <p class="muted" style="font-size:.84rem;margin-bottom:.9rem">Atur pemberitahuan otomatis untuk warga yang mengajukan surat — <strong>masuk (tanpa antre), sedang diproses, dan selesai</strong> — plus kabar ke pengurus saat ada pengajuan baru.</p>
+          <div class="switch-list">
+            <label class="switch-row" for="notifStatus">
+              <span class="switch-teks"><strong>🔔 Notifikasi status pengajuan di HP warga</strong>
+                <small>Warga yang mengaktifkan pantauan di halaman Lacak Pengajuan menerima notifikasi otomatis di HP (Android &amp; iPhone) saat pengajuan diterima, diproses, dan selesai.</small></span>
+              <input type="checkbox" id="notifStatus" checked /><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="switch-row" for="notifWaWarga">
+              <span class="switch-teks"><strong>💬 Notifikasi WhatsApp ke warga pemohon</strong>
+                <small>Tombol kirim notifikasi status (diproses / selesai) ke nomor WhatsApp warga muncul di detail pengajuan panel pengurus.</small></span>
+              <input type="checkbox" id="notifWaWarga" checked /><i class="switch" aria-hidden="true"></i>
+            </label>
+            <label class="switch-row" for="notifWaPengurus">
+              <span class="switch-teks"><strong>📨 Notifikasi WhatsApp ke pengurus</strong>
+                <small>Sertakan tautan kirim cepat ke WhatsApp pengurus saat warga baru mengajukan surat (sudah aktif di formulir layanan).</small></span>
+              <input type="checkbox" id="notifWaPengurus" checked /><i class="switch" aria-hidden="true"></i>
+            </label>
+          </div>
+          <div class="hp-box">
+            <div class="hp-box-head"><span>📲 Status notifikasi di perangkat ini</span><strong id="notifIzinState">—</strong></div>
+            <div class="hp-box-acts">
+              <button class="btn btn-sm" type="button" id="notifIzin">🔔 Aktifkan Notifikasi di HP Ini</button>
+              <button class="btn btn-outline btn-sm hidden" type="button" id="notifUji">🧪 Kirim Notifikasi Uji</button>
+            </div>
+            <ul class="hp-steps">
+              <li><strong>Android (Chrome):</strong> buka website ini → menu browser <em>⋮</em> → <em>Tambahkan ke layar utama</em> → buka dari ikon tersebut → tekan tombol di atas.</li>
+              <li><strong>iPhone (Safari 16.4+):</strong> buka website ini → tombol <em>Bagikan</em> → <em>Tambahkan ke Layar Utama</em> → buka dari ikon tersebut → tekan tombol di atas.</li>
+              <li>Notifikasi berbunyi selama website dibuka (di layar utama terasa seperti aplikasi). Izin <em>Ditolak</em> harus diubah dulu lewat pengaturan situs di browser.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h3>👥 Pengguna &amp; Hak Akses Panel</h3>
+          <p class="muted" style="font-size:.84rem;margin-bottom:.9rem">Atur siapa yang boleh masuk ke panel pengurus dan menu apa saja yang bisa dibukanya (centang hak otoritas). Masuk lewat <strong>nama pengguna</strong>; kata sandi utama tetap berlaku sebagai admin sistem dengan akses penuh.</p>
+          <div class="table-wrap" style="margin-bottom:.9rem">
+            <table>
+              <thead><tr><th>Nama</th><th>Pengguna</th><th>Hak Otoritas</th><th>Status</th><th></th></tr></thead>
+              <tbody id="usersBody"><tr><td colspan="5" class="empty">Memuat…</td></tr></tbody>
+            </table>
+          </div>
+          <button class="btn btn-outline btn-sm" type="button" id="tambahUser">+ Tambah Pengguna Panel</button>
+        </div>
+
+        <div class="settings-group">
+          <h3>💾 Backup &amp; Reset Data</h3>
+          <p class="muted" style="font-size:.84rem;margin-bottom:.9rem">Unduh seluruh data website RT (pengajuan, warga, KK, rumah &amp; fasilitas, keuangan, bansos, inventaris, keamanan, pengumuman, buku tamu) sebagai berkas JSON cadangan — simpan ke komputer atau cloud. Tombol reset mengosongkan semua data operasional; <strong>pengaturan situs dan pengguna panel tidak ikut dihapus</strong>.</p>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap;align-items:flex-end">
+            <button class="btn" type="button" id="btnBackup">⬇️ Unduh Backup (JSON)</button>
+          </div>
+          <div class="field" style="margin-top:1.1rem;max-width:460px">
+            <label>Konfirmasi Reset Data</label>
+            <input type="text" id="resetKonfirmasi" placeholder="Ketik RESET (huruf besar) untuk membuka tombol" autocomplete="off" />
+          </div>
+          <button class="btn btn-danger" type="button" id="btnReset" disabled>🗑️ Kosongkan Semua Data Operasional</button>
+          <p class="muted" style="font-size:.82rem;margin-top:.7rem">⚠️ Reset tidak bisa dibatalkan. Unduh backup terlebih dahulu sebelum mereset.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal detail rumah (Denah RT) -->
+  <div class="modal-back hidden" id="denahModal">
+    <div class="modal">
+      <h3 id="denahModalTitle">Detail Rumah</h3>
+      <div class="detail-box" id="denahDetail"></div>
+      <div class="modal-actions">
+        <a class="btn btn-sm hidden" id="denahWa" href="#" target="_blank" rel="noopener">💬 Chat Penghuni</a>
+        <button class="btn btn-ghost btn-sm" id="denahKeRumah" type="button">🏘️ Kelola di Rumah &amp; Fasilitas</button>
+        <button class="btn btn-ghost btn-sm" type="button" data-close-modal>Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal pengajuan -->
+  <div class="modal-back hidden" id="editModal">
+    <div class="modal">
+      <h3 id="editTitle">Detail Pengajuan</h3>
+      <div class="detail-box" id="editDetail"></div>
+      <div class="field"><label>Status</label>
+        <select id="editStatus">
+          <option value="menunggu">Menunggu</option>
+          <option value="diproses">Diproses</option>
+          <option value="selesai">Selesai</option>
+          <option value="ditolak">Ditolak</option>
+        </select>
+      </div>
+      <div class="field" id="editNomorSuratField"><label>Nomor Surat Resmi</label>
+        <input type="text" id="editNomorSurat" placeholder="001/RT.04/RW.12/TBS/10/2026" />
+      </div>
+      <div class="field"><label>Catatan untuk Warga</label>
+        <textarea id="editCatatan" rows="3" placeholder="Contoh: Surat dapat diambil di Pos RT hari Sabtu pukul 10.00 WIB."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" id="editSave">💾 Simpan</button>
+        <button class="btn btn-outline hidden" id="editPrint">🖨️ Cetak Surat</button>
+        <button class="btn btn-outline" id="editWa" type="button">💬 Notifikasi WA ke Warga</button>
+        <button class="btn btn-ghost" id="editClose">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal kirim email pengajuan -->
+  <div class="modal-back hidden" id="emailModal">
+    <div class="modal">
+      <h3 id="emailTitle">✉️ Kirim Email Pengajuan</h3>
+      <div class="field"><label>Kepada (email warga)</label>
+        <input type="email" id="emailTo" placeholder="nama@contoh.com" />
+      </div>
+      <div class="field"><label>Perihal</label>
+        <input type="text" id="emailSubject" />
+      </div>
+      <div class="field"><label>Isi Email</label>
+        <textarea id="emailBody" class="kirim-mail-isi"></textarea>
+      </div>
+      <p class="kirim-mail-hint">📧 “Buka &amp; Kirim” membuka aplikasi email di perangkat Anda dengan perihal dan isi yang sudah tersusun — tinggal masukkan alamat (bila belum) lalu tekan kirim.</p>
+      <div class="modal-actions">
+        <button class="btn" id="emailSend">📧 Buka &amp; Kirim</button>
+        <button class="btn btn-outline" id="emailCopy">📋 Salin Isi</button>
+        <button class="btn btn-ghost" id="emailClose">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal data warga -->
+  <div class="modal-back hidden" id="wargaModal">
+    <form class="modal" id="wargaForm">
+      <h3 id="wargaModalTitle">Tambah Data Warga</h3>
+      <div class="form-2">
+        <div class="field span-2"><label>Nama Lengkap *</label><input type="text" name="nama" required placeholder="Nama sesuai KTP" /></div>
+        <div class="field"><label>NIK (16 digit, opsional)</label><input type="text" name="nik" inputmode="numeric" maxlength="16" placeholder="3201234567890001" /></div>
+        <div class="field"><label>Blok / Rumah *</label><input type="text" name="blok" required placeholder="Contoh: A-05" /></div>
+        <div class="field"><label>Jenis Kelamin</label>
+          <select name="jenis_kelamin"><option value="">— pilih —</option><option value="L">Laki-laki</option><option value="P">Perempuan</option></select>
+        </div>
+        <div class="field"><label>Status Warga</label>
+          <select name="status"><option value="tetap">Warga Tetap</option><option value="kontrak">Kontrak</option><option value="pendatang">Pendatang</option></select>
+        </div>
+        <div class="field"><label>Tempat Lahir</label><input type="text" name="tempat_lahir" /></div>
+        <div class="field"><label>Tanggal Lahir</label><input type="date" name="tanggal_lahir" /></div>
+        <div class="field"><label>No. HP</label><input type="tel" name="no_hp" placeholder="0812xxxx" /></div>
+        <div class="field"><label>Status Perkawinan</label>
+          <select name="perkawinan"><option value="">— pilih —</option><option value="belum_kawin">Belum Kawin</option><option value="kawin">Kawin</option><option value="cerai">Cerai</option><option value="cerai_mati">Cerai Mati</option></select>
+        </div>
+        <div class="field"><label>Penyandang Disabilitas</label>
+          <select name="disabilitas"><option value="">— pilih —</option><option value="tidak">Tidak</option><option value="ya">Ya</option></select>
+        </div>
+        <div class="field"><label>Status Domisili</label>
+          <select name="domisili"><option value="">— pilih —</option><option value="sesuai">Sesuai KTP di RT 04</option><option value="luar">Domisili di Luar RT 04</option></select>
+        </div>
+        <div class="field"><label>Agama</label>
+          <select name="agama"><option value="">— pilih —</option><option value="islam">Islam</option><option value="kristen">Kristen</option><option value="katolik">Katolik</option><option value="hindu">Hindu</option><option value="buddha">Buddha</option><option value="konghucu">Konghucu</option><option value="lainnya">Lainnya</option></select>
+        </div>
+
+        <div class="field span-2"><label>Pendidikan</label>
+          <div class="mode-pick">
+            <label class="mode-opt"><input type="radio" name="pendidikan_status" value="lulus" /><span><strong>✔ Sudah Lulus</strong> — pilih lulusan (PAUD … S3)</span></label>
+            <label class="mode-opt"><input type="radio" name="pendidikan_status" value="belum_lulus" /><span><strong>✔ Belum Lulus</strong> — pelajar/mahasiswa &amp; data sekolah</span></label>
+          </div>
+        </div>
+        <div class="field pdk-lulus hidden"><label>Lulusan (Jenjang)</label>
+          <select name="pendidikan_jenjang">
+            <option value="">— pilih —</option><option>PAUD</option><option>TK</option><option>SD</option><option>SMP</option><option>SMA</option><option>D1</option><option>D2</option><option>S1</option><option>S2</option><option>S3</option>
+          </select>
+        </div>
+        <div class="field pdk-belum hidden"><label>Pelajar / Mahasiswa</label>
+          <select name="pendidikan_jenis"><option value="">— pilih —</option><option>Pelajar</option><option>Mahasiswa</option></select>
+        </div>
+        <div class="field pdk-belum hidden"><label>Jenis Sekolah</label>
+          <select name="pendidikan_jenis_sekolah"><option value="">— pilih —</option><option value="swasta">Swasta</option><option value="negeri">Negeri</option></select>
+        </div>
+        <div class="field pdk-belum hidden"><label>Kelas / Semester</label><input type="text" name="pendidikan_kelas" placeholder="mis. XII / Semester 5" /></div>
+        <div class="field pdk-belum hidden"><label>Nama Sekolah</label><input type="text" name="pendidikan_sekolah" placeholder="SMA Negeri 1 Pasar Kemis" /></div>
+        <div class="field span-2 pdk-belum hidden"><label>Alamat Sekolah</label><input type="text" name="pendidikan_alamat_sekolah" placeholder="Jl. Raya ..." /></div>
+
+        <div class="field span-2"><label>Pekerjaan</label>
+          <div class="mode-pick">
+            <label class="mode-opt"><input type="radio" name="pekerjaan_status" value="bekerja" /><span><strong>✔ Bekerja</strong> — tampilkan data pekerjaan &amp; perusahaan</span></label>
+            <label class="mode-opt"><input type="radio" name="pekerjaan_status" value="belum_bekerja" /><span><strong>✔ Belum Bekerja</strong></span></label>
+            <label class="mode-opt"><input type="radio" name="pekerjaan_status" value="tidak_bekerja" /><span><strong>✔ Tidak Bekerja</strong></span></label>
+          </div>
+        </div>
+        <div class="field pkr-kerja hidden"><label>Nama Pekerjaan</label><input type="text" name="pekerjaan" placeholder="Wiraswasta / PNS / Karyawan…" /></div>
+        <div class="field pkr-kerja hidden"><label>Nama Perusahaan / Instansi</label><input type="text" name="nama_perusahaan" placeholder="CV. / PT. / Instansi" /></div>
+        <div class="field pkr-kerja hidden"><label>Jabatan</label><input type="text" name="jabatan" placeholder="mis. Staf Administrasi" /></div>
+        <div class="field span-2 pkr-kerja hidden"><label>Alamat Perusahaan</label><input type="text" name="alamat_perusahaan" placeholder="Alamat kantor / instansi" /></div>
+        <div class="field span-2"><label>Keluarga (Data KK)</label><select name="kk_id" id="wargaKKSelect"><option value="">— Tidak terkait —</option></select></div>
+        <div class="field span-2"><label>Keterangan</label><input type="text" name="keterangan" placeholder="Catatan tambahan (opsional)" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal data KK -->
+  <div class="modal-back hidden" id="kkModal">
+    <form class="modal" id="kkForm">
+      <h3 id="kkModalTitle">Tambah Data KK</h3>
+      <div class="form-2">
+        <div class="field span-2" id="kkWargaPick"><label>Isi otomatis dari Data Warga (pilih satu)</label>
+          <select id="kkWarga"><option value="">— Isi manual —</option></select>
+        </div>
+        <div class="field"><label>Kepala Keluarga *</label><input type="text" name="kepala_keluarga" required placeholder="Nama kepala keluarga" /></div>
+        <div class="field"><label>Blok / Rumah *</label><input type="text" name="blok" required placeholder="Contoh: A-05" /></div>
+        <div class="field"><label>Nomor KK (16 digit, opsional)</label><input type="text" name="nomor_kk" inputmode="numeric" maxlength="16" placeholder="3201234567890001" /></div>
+        <div class="field"><label>No. HP</label><input type="tel" name="no_hp" /></div>
+        <div class="field"><label>Jumlah Anggota</label><input type="number" name="jumlah_anggota" min="0" max="100" /></div>
+        <div class="field"><label>Alamat</label><input type="text" name="alamat" placeholder="Alamat lengkap" /></div>
+        <div class="field span-2"><label>Keterangan</label><input type="text" name="keterangan" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal tinjauan Kartu Keluarga (View KK) -->
+  <div class="modal-back hidden" id="kkViewModal">
+    <div class="modal modal-lebar">
+      <h3 id="kkViewTitle">Tinjauan Kartu Keluarga</h3>
+      <div class="detail-box" id="kkViewHead"></div>
+      <div class="kas-sum" id="kkViewStats"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nama</th><th>NIK</th><th>L/P</th><th>Usia</th><th>Pekerjaan</th><th>Status</th><th>No. HP</th></tr></thead>
+          <tbody id="kkViewBody"><tr><td colspan="7" class="empty">Memuat…</td></tr></tbody>
+        </table>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" id="kkViewPrint" type="button">🖨️ Cetak Kartu Keluarga</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal rumah -->
+  <div class="modal-back hidden" id="rumahModal">
+    <form class="modal" id="rumahForm">
+      <h3 id="rumahModalTitle">Tambah Rumah</h3>
+      <div class="form-2">
+        <div class="field span-2" id="rumahWargaPick"><label>Isi otomatis dari Data Warga (pilih satu)</label>
+          <select id="rumahWarga"><option value="">— Isi manual —</option></select>
+        </div>
+        <div class="field"><label>Kode / Blok Rumah *</label><input type="text" name="kode" required placeholder="Contoh: A-05" /></div>
+        <div class="field"><label>Status Huni</label>
+          <select name="status_huni"><option value="dihuni">Dihuni</option><option value="kosong">Kosong</option></select>
+        </div>
+        <div class="field"><label>Penghuni / Kepala Keluarga</label><input type="text" name="kepala_keluarga" /></div>
+        <div class="field"><label>Kepemilikan</label>
+          <select name="kepemilikan"><option value="">— pilih —</option><option value="milik">Milik Sendiri</option><option value="kontrak">Kontrak</option><option value="lainnya">Lainnya</option></select>
+        </div>
+        <div class="field"><label>No. HP</label><input type="tel" name="no_hp" /></div>
+        <div class="field"><label>Daya Listrik</label>
+          <select name="daya_listrik"><option value="">— pilih —</option><option value="450">450 VA</option><option value="900">900 VA</option><option value="1300">1300 VA</option><option value="2200">2200 VA</option><option value="diatas_2200">Di atas 2200 VA</option></select>
+        </div>
+        <div class="field"><label>Sumber Air Bersih</label>
+          <select name="sumber_air"><option value="">— pilih —</option><option value="pipa">Air Pipa Berlangganan (PDAM / Aertra)</option><option value="tanah">Air Tanah (Sumur Bor / Sumur Gali + Pompa)</option><option value="isi_ulang">Air Isi Ulang / Air Kemasan</option></select>
+        </div>
+        <div class="field"><label>Jaringan Internet</label>
+          <select name="jaringan_internet"><option value="">— pilih —</option><option value="kabel">WiFi / Indihome / Provider Kabel</option><option value="seluler">Hanya Pakai Data HP / Seluler</option><option value="tidak_ada">Tidak Ada Akses Internet</option></select>
+        </div>
+        <div class="field net-kabel"><label>Provider Internet Kabel</label>
+          <select name="provider_internet"><option value="">— pilih —</option><option value="indihome">Indihome</option><option value="firstmedia">Firstmedia / XL Satu</option><option value="biznet">Biznet</option><option value="tbsnet">TBS Net</option><option value="lainnya">Lainnya</option></select>
+        </div>
+        <div class="field"><label>Kamera Pengawas (CCTV)</label>
+          <select name="cctv"><option value="">— pilih —</option><option value="ya">Ada</option><option value="tidak">Tidak</option></select>
+        </div>
+        <div class="field"><label>Dasawisma</label>
+          <select name="dasawisma"><option value="">— pilih —</option><option value="abu_bakar">Abu Bakar</option><option value="umar">Umar</option><option value="utsman">Utsman</option><option value="ali">Ali</option></select>
+        </div>
+        <div class="field"><label>Jumlah Mobil</label>
+          <input type="number" name="jumlah_mobil" min="0" max="99" inputmode="numeric" placeholder="0" />
+        </div>
+        <div class="field plat-kendaraan" data-plat-for="jumlah_mobil"><label>Nomor Plat Mobil</label>
+          <input type="text" name="plat_mobil" maxlength="20" placeholder="B 1234 XYZ" style="text-transform: uppercase" />
+        </div>
+        <div class="field"><label>Jumlah Motor</label>
+          <input type="number" name="jumlah_motor" min="0" max="99" inputmode="numeric" placeholder="0" />
+        </div>
+        <div class="field plat-kendaraan" data-plat-for="jumlah_motor"><label>Nomor Plat Motor</label>
+          <input type="text" name="plat_motor" maxlength="20" placeholder="B 4321 ABC" style="text-transform: uppercase" />
+        </div>
+        <div class="field"><label>Tag (pisahkan dengan koma)</label><input type="text" name="tags" placeholder="mis. cat-luarnya-baru, renovasi-2026" /></div>
+        <div class="field"><label>Keterangan</label><input type="text" name="keterangan" placeholder="Opsional" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal fasilitas -->
+  <div class="modal-back hidden" id="fasModal">
+    <form class="modal" id="fasForm">
+      <h3 id="fasModalTitle">Tambah Fasilitas</h3>
+      <div class="form-2">
+        <div class="field span-2"><label>Nama Fasilitas *</label><input type="text" name="nama" required placeholder="Pos ronda, lampu jalan, saluran air…" /></div>
+        <div class="field"><label>Kategori</label>
+          <select name="kategori">
+            <option value="keamanan">Keamanan</option><option value="kebersihan">Kebersihan</option><option value="drainase">Drainase</option>
+            <option value="sosial">Sosial</option><option value="ibadah">Ibadah</option><option value="olahraga">Olahraga</option><option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="field"><label>Kondisi</label>
+          <select name="kondisi">
+            <option value="baik">Baik</option><option value="perlu_perawatan">Perlu Perawatan</option>
+            <option value="rusak_ringan">Rusak Ringan</option><option value="rusak_berat">Rusak Berat</option>
+          </select>
+        </div>
+        <div class="field"><label>Lokasi</label><input type="text" name="lokasi" placeholder="Depan pos, blok B…" /></div>
+        <div class="field"><label>Jumlah</label><input type="number" name="jumlah" min="0" max="10000" /></div>
+        <div class="field"><label>Diperiksa Pada</label><input type="date" name="diperiksa_pada" /></div>
+        <div class="field"><label>Tag (pisahkan dengan koma)</label><input type="text" name="tags" placeholder="mis. fasum, prioritas-1" /></div>
+        <div class="field"><label>Keterangan</label><input type="text" name="keterangan" placeholder="Opsional" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal usaha warga -->
+  <div class="modal-back hidden" id="usahaModal">
+    <form class="modal" id="usahaForm">
+      <h3 id="usahaModalTitle">Tambah Usaha Warga</h3>
+      <div class="form-2">
+        <div class="field span-2" id="usahaWargaPick"><label>Isi otomatis dari Data Warga (pilih satu)</label>
+          <select id="usahaWarga"><option value="">— Isi manual —</option></select>
+        </div>
+        <div class="field"><label>Nama Usaha *</label><input type="text" name="nama_usaha" required placeholder="Contoh: Warung Bu Yuni" /></div>
+        <div class="field"><label>Pemilik *</label><input type="text" name="pemilik" required placeholder="Nama pemilik usaha" /></div>
+        <div class="field"><label>Kategori</label>
+          <select name="kategori">
+            <option value="kuliner">Kuliner</option><option value="kerajinan">Kerajinan</option><option value="jasa">Jasa</option>
+            <option value="pertanian">Pertanian</option><option value="perdagangan">Perdagangan</option>
+            <option value="elektronik">Elektronik</option><option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="field"><label>Blok / Rumah</label><input type="text" name="blok" placeholder="Contoh: B-12" /></div>
+        <div class="field"><label>No. HP / WhatsApp</label><input type="tel" name="no_hp" placeholder="0812xxxx" /></div>
+        <div class="field"><label>Deskripsi Singkat</label><input type="text" name="deskripsi" placeholder="Produk / layanan yang ditawarkan" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal pengguna panel -->
+  <div class="modal-back hidden" id="userModal">
+    <form class="modal" id="userForm">
+      <h3 id="userModalTitle">Tambah Pengguna Panel</h3>
+      <div class="form-2">
+        <div class="field"><label>Nama Lengkap *</label><input type="text" name="nama" required placeholder="Nama pengurus" /></div>
+        <div class="field"><label>Nama Pengguna *</label><input type="text" name="username" required pattern="[a-zA-Z0-9_.]{3,30}" placeholder="mis. bendahara04" autocomplete="off" /></div>
+        <div class="field span-2"><label>Kata Sandi <span id="userPassReq">*</span></label>
+          <input type="password" name="password" autocomplete="new-password" placeholder="Minimal 6 karakter" />
+          <small class="muted" id="userPassNote">Minimal 6 karakter.</small>
+        </div>
+        <div class="field span-2"><label>Hak Otoritas — menu yang boleh dibuka pengguna ini</label>
+          <div class="hak-grid">
+            <label class="hak-item"><input type="checkbox" name="hak" value="pengajuan" /> 📋 Pengajuan Surat &amp; Aduan</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="keuangan" /> 💰 Keuangan (Setoran, Iuran Tahunan, Kas, Kartu Iuran)</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="data" /> 🗂️ Data Warga, KK, Rumah &amp; Fasilitas</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="bansos" /> 🎁 Bansos &amp; Tanda Terima</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="inventaris" /> 📦 Inventaris &amp; Peminjaman</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="keamanan" /> 🛡️ Keamanan (Ronda &amp; Kejadian)</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="pengumuman" /> 📢 Pengumuman</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="laporan" /> 📊 Laporan &amp; Statistik</label>
+            <label class="hak-item"><input type="checkbox" name="hak" value="pengaturan" /> ⚙️ Pengaturan Website &amp; Pengguna</label>
+          </div>
+        </div>
+        <div class="field span-2">
+          <label class="hak-item" style="margin:0"><input type="checkbox" id="userAktif" checked /> Akun aktif — boleh masuk panel</label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal program bansos -->
+  <div class="modal-back hidden" id="bansosModal">
+    <form class="modal" id="bansosForm">
+      <h3 id="bansosModalTitle">Program Bantuan Baru</h3>
+      <div class="form-2">
+        <div class="field span-2"><label>Nama Program *</label><input type="text" name="nama_program" required placeholder="Contoh: Paket Sembako Ramadan" /></div>
+        <div class="field"><label>Jenis Bantuan</label>
+          <select name="jenis">
+            <option value="sembako">Sembako</option><option value="uang_tunai">Uang Tunai</option><option value="obat">Obat / Kesehatan</option>
+            <option value="pakaian">Pakaian</option><option value="layanan">Layanan</option><option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="field"><label>Tanggal Perkiraan</label><input type="date" name="tanggal" /></div>
+        <div class="field span-2"><label>Deskripsi</label><input type="text" name="deskripsi" placeholder="Keterangan singkat program" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal penerima bansos -->
+  <div class="modal-back hidden" id="penerimaModal">
+    <form class="modal" id="penerimaForm">
+      <h3 id="penerimaModalTitle">Tambah Penerima</h3>
+      <div class="form-2">
+        <div class="field"><label>Nama Penerima *</label><input type="text" name="nama" required placeholder="Nama warga penerima" /></div>
+        <div class="field"><label>Blok / Rumah *</label><input type="text" name="blok" required placeholder="Contoh: B-12" /></div>
+        <div class="field"><label>No. HP</label><input type="tel" name="no_hp" /></div>
+        <div class="field"><label>Nominal Bantuan (Rp)</label><input type="number" name="nominal" min="0" step="1000" /></div>
+        <div class="field span-2"><label>Keterangan</label><input type="text" name="keterangan" placeholder="Contoh: Balita / Lansia / Dhuafa" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal terbitkan tanda terima -->
+  <div class="modal-back hidden" id="terimaModal">
+    <form class="modal" id="terimaForm">
+      <h3>Terbitkan Tanda Terima Digital</h3>
+      <div class="detail-box" id="terimaDetail"></div>
+      <div class="field"><label>Nama Penanda Tangan (penerima) *</label>
+        <input type="text" id="terimaTtd" required placeholder="Tulis nama penerima yang menandatangani" />
+      </div>
+      <p class="muted" style="font-size:.82rem">Tanda terima bernomor <strong>BTS-…</strong> diterbitkan dan bisa dicetak serta diverifikasi warga lewat menu Lacak Pengajuan.</p>
+      <div class="modal-actions">
+        <button class="btn" type="submit">✅ Salurkan &amp; Terbitkan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal barang inventaris -->
+  <div class="modal-back hidden" id="barangModal">
+    <form class="modal" id="barangForm">
+      <h3 id="barangModalTitle">Tambah Barang</h3>
+      <div class="form-2">
+        <div class="field"><label>Nama Barang *</label><input type="text" name="nama" required placeholder="Proyektor, Kursi lipat…" /></div>
+        <div class="field"><label>Kategori</label>
+          <select name="kategori">
+            <option value="elektronik">Elektronik</option><option value="perkakas">Perkakas</option><option value="furniture">Furniture</option>
+            <option value="olahraga">Olahraga</option><option value="kebersihan">Kebersihan</option><option value="dokumen">Dokumen</option><option value="lainnya">Lainnya</option>
+          </select>
+        </div>
+        <div class="field"><label>Jumlah Unit *</label><input type="number" name="jumlah" min="1" max="10000" value="1" required /></div>
+        <div class="field"><label>Kondisi</label>
+          <select name="kondisi"><option value="baik">Baik</option><option value="rusak_ringan">Rusak Ringan</option><option value="rusak_berat">Rusak Berat</option></select>
+        </div>
+        <div class="field"><label>Lokasi Penyimpanan</label><input type="text" name="lokasi" placeholder="Pos RT, Gudang…" /></div>
+        <div class="field"><label>Keterangan</label><input type="text" name="keterangan" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal peminjaman -->
+  <div class="modal-back hidden" id="pinjamanModal">
+    <form class="modal" id="pinjamanForm">
+      <h3 id="pinjamanModalTitle">Catat Peminjaman</h3>
+      <div class="form-2">
+        <div class="field span-2"><label>Barang *</label><select id="pinjamBarang" name="barang_id" required><option value="">— Pilih barang —</option></select></div>
+        <div class="field"><label>Nama Peminjam *</label><input type="text" name="nama_peminjam" required /></div>
+        <div class="field"><label>Blok / Rumah</label><input type="text" name="blok" /></div>
+        <div class="field"><label>No. HP</label><input type="tel" name="no_hp" /></div>
+        <div class="field"><label>Jumlah *</label><input type="number" name="jumlah" min="1" value="1" required /></div>
+        <div class="field"><label>Tanggal Pinjam</label><input type="date" name="tanggal_pinjam" /></div>
+        <div class="field"><label>Target Kembali</label><input type="date" name="tanggal_target" /></div>
+        <div class="field"><label>Biaya Sewa / Pemakaian (Rp)</label><input type="number" name="biaya" min="0" step="1000" value="0" /></div>
+        <div class="field"><label>Keterangan</label><input type="text" name="keterangan" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" type="submit">💾 Simpan</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal import Excel warga -->
+  <div class="modal-back hidden" id="importModal">
+    <div class="modal">
+      <h3>Import Data Warga (Excel)</h3>
+      <p class="muted" style="font-size:.84rem;margin-bottom:.8rem">Pilih berkas <b>.xlsx</b> — baris pertama judul kolom: <code>nama, blok, nik, jenis_kelamin, no_hp, pekerjaan, status</code> (lembar pertama). NIK duplikat otomatis dilewati. Bisa juga menempel data langsung di kolom bawah.</p>
+      <div class="field"><label>Pilih berkas Excel (.xlsx)</label><input type="file" id="importFile" accept=".xlsx,.xlsm,.csv" /></div>
+      <div class="field"><label>Atau tempel data (satu warga per baris)</label>
+        <textarea id="importCsv" rows="7" placeholder="Siti Aminah,Mangga 2 No. 8,3204123456780001,P,081298765432,Ibu Rumah Tangga,tetap"></textarea>
+      </div>
+      <div class="muted" id="importInfo" style="font-size:.82rem;margin-bottom:.6rem"></div>
+      <div class="modal-actions">
+        <button class="btn" id="jalankanImport" type="button">📥 Import Sekarang</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+      <div id="importHasil" style="margin-top:.8rem"></div>
+    </div>
+  </div>
+
+  <!-- Modal pindai identitas AI -->
+  <div class="modal-back hidden" id="scanModal">
+    <div class="modal">
+      <h3>Pindai Data dengan AI</h3>
+      <p class="muted" style="font-size:.84rem;margin-bottom:.8rem">Unggah foto KTP atau Kartu Keluarga. AI membaca datanya lalu mengisi formulir otomatis — periksa kembali sebelum menyimpan.</p>
+      <div class="form-2">
+        <div class="field"><label>Jenis Dokumen</label>
+          <select id="scanJenis"><option value="ktp">KTP</option><option value="kk">Kartu Keluarga (KK)</option></select>
+        </div>
+        <div class="field"><label>Foto Dokumen *</label><input type="file" id="scanFile" accept="image/png,image/jpeg,image/webp" /></div>
+      </div>
+      <div id="scanPreview" class="qris-prev hidden"><img id="scanPreviewImg" alt="Pratinjau dokumen" /></div>
+      <div class="modal-actions">
+        <button class="btn" id="jalankanScan" type="button">🤖 Pindai dengan AI</button>
+        <button class="btn btn-ghost" type="button" data-close-modal>Batal</button>
+      </div>
+      <div id="scanHasil" style="margin-top:.8rem"></div>
+    </div>
+  </div>
+
+  <!-- Area cetak surat -->
+  <div id="printArea"></div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

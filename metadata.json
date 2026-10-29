@@ -1,0 +1,6 @@
+{
+  "name": "Portal RT 04 / RW 12 Sukamantri",
+  "description": "Portal Layanan Terpadu & Sistem Informasi Manajemen Warga RT 04 / RW 12 Perum Taman Buah Sukamantri. Layanan surat pengantar online, transparansi kas & iuran, aduan warga, demografi, dan panel pengurus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
